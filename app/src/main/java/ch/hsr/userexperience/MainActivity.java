@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         startBtn.setEnabled(true);
 //        urlField.setText("");
         Toast.makeText(getBaseContext(), "PLT: " + loadingTime + "ms", Toast.LENGTH_LONG).show();
-//        urlField.setVisibility(View.VISIBLE);
+// //       urlField.setVisibility(View.VISIBLE);
 
     }
 
