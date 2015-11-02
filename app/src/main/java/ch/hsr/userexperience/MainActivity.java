@@ -1,11 +1,11 @@
 package ch.hsr.userexperience;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -17,8 +17,12 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.TreeSet;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,14 +34,16 @@ public class MainActivity extends AppCompatActivity {
     private long startTime;
     private long doneTime;
     private boolean loadingFinished, redirect;
+    private ArrayList<String> ressourceUrlList;
+    private TreeSet<String> hostUrlSet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
         webView = (WebView) findViewById(R.id.webView);
         urlField = (EditText) findViewById(R.id.urlField);
@@ -48,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
                 startTest();
             }
         });
+
+        ressourceUrlList = new ArrayList<>();
+        hostUrlSet = new TreeSet<>();
 
         urlField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -82,9 +91,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onReceivedError (WebView view, int errorCode, String description, String failingUrl) {
-                Toast.makeText(getBaseContext(), "Error occured", Toast.LENGTH_SHORT).show();
-                Log.e(TAG, "ErrorCode " + errorCode + " url: " + failingUrl + " desc: " + description);
+            public void onLoadResource(WebView view, String url) {
+                ressourceUrlList.add(url);
             }
 
             @Override
@@ -107,9 +115,9 @@ public class MainActivity extends AppCompatActivity {
         webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
         webView.getSettings().setJavaScriptEnabled(true);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            WebView.setWebContentsDebuggingEnabled(true);
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//            WebView.setWebContentsDebuggingEnabled(true);
+//        }
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -124,6 +132,8 @@ public class MainActivity extends AppCompatActivity {
     private void startTest() {
         webView.clearCache(true);
         startBtn.setEnabled(false);
+        ressourceUrlList.clear();
+        hostUrlSet.clear();
 //        startBtn.setVisibility(View.GONE);
 //        urlField.setVisibility(View.GONE);
 
@@ -146,9 +156,59 @@ public class MainActivity extends AppCompatActivity {
         long loadingTime = doneTime - startTime;
         startBtn.setEnabled(true);
 //        urlField.setText("");
-        Toast.makeText(getBaseContext(), "PLT: " + loadingTime + "ms", Toast.LENGTH_LONG).show();
+//        Toast.makeText(getBaseContext(), "PLT: " + loadingTime + "ms", Toast.LENGTH_LONG).show();
 // //       urlField.setVisibility(View.VISIBLE);
 
+        for (String url : ressourceUrlList) {
+            hostUrlSet.add(getHost(url));
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Test results");
+        final LinearLayout layout = new LinearLayout(this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        TextView t = new TextView(this);
+        t.setText("Time: " + loadingTime);
+        layout.addView(t);
+        for (String host : hostUrlSet)
+        {
+            t = new TextView(this);
+            t.setText(host);
+
+            layout.addView(t);
+        }
+
+        final ScrollView scrollView = new ScrollView(this);
+        scrollView.addView(layout);
+        builder.setView(scrollView);
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User clicked OK button
+            }
+        });
+
+        builder.show();
+
+    }
+
+    public String getHost(String url){
+        if(url == null || url.length() == 0)
+            return "";
+
+        int doubleslash = url.indexOf("//");
+        if(doubleslash == -1)
+            doubleslash = 0;
+        else
+            doubleslash += 2;
+
+        int end = url.indexOf('/', doubleslash);
+        end = end >= 0 ? end : url.length();
+
+        int port = url.indexOf(':', doubleslash);
+        end = (port > 0 && port < end) ? port : end;
+
+        return url.substring(doubleslash, end);
     }
 
     @Override
