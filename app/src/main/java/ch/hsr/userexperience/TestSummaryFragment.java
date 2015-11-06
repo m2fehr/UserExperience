@@ -16,7 +16,7 @@ import android.view.ViewGroup;
  */
 public class TestSummaryFragment extends Fragment {
 
-    public final static String TAG = "SurfFragment";
+    public final static String TAG = "TestSummaryFragment";
 
     private FragmentController fragmentController;
 

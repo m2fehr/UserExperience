@@ -1,9 +1,8 @@
 package ch.hsr.userexperience;
 
 import android.app.Activity;
-import android.net.Uri;
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +11,14 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link UserdataInputFragment.OnFragmentInteractionListener} interface
+ * {@link FragmentController} interface
  * to handle interaction events.
  */
 public class UserdataInputFragment extends Fragment {
 
-    private OnFragmentInteractionListener mListener;
+    public final static String TAG = "UserdataInputFragment";
+
+    private FragmentController fragmentController;
 
     public UserdataInputFragment() {
         // Required empty public constructor
@@ -31,43 +32,30 @@ public class UserdataInputFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_userdata_input, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        Activity activity = getActivity();
+
+//        webView = (WebView) activity.findViewById(R.id.webView);
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public void onAttach(Activity context) {
+        super.onAttach(context);
         try {
-            mListener = (OnFragmentInteractionListener) activity;
+            fragmentController = (FragmentController) context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
+            throw new ClassCastException(context.toString()
+                    + " must implement FragmentController");
         }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
+        fragmentController = null;
     }
 
 }
