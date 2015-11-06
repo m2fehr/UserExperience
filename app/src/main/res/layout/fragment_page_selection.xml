@@ -11,7 +11,7 @@
         android:id="@+id/zwanzigMinBtn"
         android:layout_margin="10dp"
         android:layout_weight="0.25"
-        android:src="@drawable/zwanzigMin_logo"
+        android:src="@drawable/zwanzigmin_logo"
         android:adjustViewBounds="true"
         android:padding="15dp"
         android:scaleType="fitCenter"
