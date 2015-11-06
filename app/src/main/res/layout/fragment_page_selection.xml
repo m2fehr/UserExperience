@@ -1,10 +1,49 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
     tools:context="ch.hsr.userexperience.PageSelectionFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/zwanzigMinBtn"
+        android:text="20min.ch"
+        android:layout_margin="10dp"
+        android:paddingBottom="30dp"
+        android:paddingTop="30dp"
+        android:textSize="17sp"/>
 
-</FrameLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/blickBtn"
+        android:text="blick.ch"
+        android:layout_margin="10dp"
+        android:paddingBottom="30dp"
+        android:paddingTop="30dp"
+        android:textSize="17sp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tagiBtn"
+        android:text="tagesanzeiger.ch"
+        android:layout_margin="10dp"
+        android:paddingBottom="30dp"
+        android:paddingTop="30dp"
+        android:textSize="17sp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/nzzBtn"
+        android:text="nzz.ch"
+        android:layout_margin="10dp"
+        android:paddingBottom="30dp"
+        android:paddingTop="30dp"
+        android:textSize="17sp"/>
+
+
+</LinearLayout>
