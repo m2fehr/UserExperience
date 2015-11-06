@@ -5,45 +5,54 @@
     android:gravity="center"
     tools:context="ch.hsr.userexperience.PageSelectionFragment">
 
-    <Button
+    <ImageButton
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:id="@+id/zwanzigMinBtn"
-        android:text="20min.ch"
         android:layout_margin="10dp"
-        android:paddingBottom="30dp"
-        android:paddingTop="30dp"
-        android:textSize="17sp"/>
+        android:layout_weight="0.25"
+        android:src="@drawable/zwanzigMin_logo"
+        android:adjustViewBounds="true"
+        android:padding="15dp"
+        android:scaleType="fitCenter"
+        android:background="@android:drawable/btn_default"/>
 
-    <Button
+    <ImageButton
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:id="@+id/blickBtn"
-        android:text="blick.ch"
         android:layout_margin="10dp"
-        android:paddingBottom="30dp"
-        android:paddingTop="30dp"
-        android:textSize="17sp"/>
+        android:layout_weight="0.25"
+        android:src="@drawable/blick_logo"
+        android:adjustViewBounds="true"
+        android:padding="15dp"
+        android:scaleType="fitCenter"
+        android:background="@android:drawable/btn_default"/>
 
-    <Button
+    <ImageButton
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:id="@+id/tagiBtn"
-        android:text="tagesanzeiger.ch"
         android:layout_margin="10dp"
-        android:paddingBottom="30dp"
-        android:paddingTop="30dp"
-        android:textSize="17sp"/>
+        android:layout_weight="0.25"
+        android:src="@drawable/tagi_logo"
+        android:adjustViewBounds="true"
+        android:padding="30dp"
+        android:scaleType="fitCenter"
+        android:background="@android:drawable/btn_default"/>
 
-    <Button
+    <ImageButton
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:id="@+id/nzzBtn"
         android:text="nzz.ch"
         android:layout_margin="10dp"
-        android:paddingBottom="30dp"
-        android:paddingTop="30dp"
-        android:textSize="17sp"/>
+        android:layout_weight="0.25"
+        android:src="@drawable/nzz_logo"
+        android:adjustViewBounds="true"
+        android:padding="25dp"
+        android:scaleType="fitCenter"
+        android:background="@android:drawable/btn_default"/>
 
 
 </LinearLayout>
