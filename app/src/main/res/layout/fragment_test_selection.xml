@@ -6,4 +6,140 @@
     <!-- TODO: Update blank fragment layout -->
 
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="left|top">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wählen Sie das gewünschte Abo aus:"
+            android:id="@+id/TestSelectionText1"
+            android:textSize="25sp"
+            android:textColor="#000000" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/TestSelectionSpinner"
+            android:spinnerMode="dropdown" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Oder geben Sie die konfigurierten Einstellungen manuell an:"
+            android:id="@+id/TestSelectionText2"
+            android:textSize="25sp"
+            android:textColor="#000000" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Downloaddatenrate in Mbps:"
+                android:id="@+id/TestSelectionLblDownloadrate"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/TestSelectionTxtDownloadrate"
+                android:editable="true"
+                android:enabled="true"
+                android:gravity="right" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="fill_parent"
+            android:layout_height="20px" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Uploaddatenrate in Mbps:"
+                android:id="@+id/TestSelectionLblUploadrate"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/TestSelectionTxtUploadrate" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="fill_parent"
+            android:layout_height="20px" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delay up in ms:"
+                android:id="@+id/TestSelectionLblDelayUp"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/TestSelectionTxtDelayUp"
+                android:editable="true"
+                android:enabled="true"
+                android:gravity="right" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="fill_parent"
+            android:layout_height="20px" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delay down in ms:"
+                android:id="@+id/TestSelectionLblDelayDown"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/TestSelectionTxtDelayDown"
+                android:editable="true"
+                android:enabled="true"
+                android:gravity="right" />
+        </LinearLayout>
+
+    </LinearLayout>
 </FrameLayout>
