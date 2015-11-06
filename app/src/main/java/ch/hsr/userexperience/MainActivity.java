@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements FragmentControlle
     @Override
     protected void onStart() {
         super.onStart();
-        changeFragment(new PageSelectionFragment());
+        changeFragment(new InformationFragment());
     }
 
     @Override
