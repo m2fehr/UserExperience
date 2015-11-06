@@ -1,23 +1,25 @@
 package ch.hsr.userexperience;
 
 import android.app.Activity;
-import android.net.Uri;
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link PageSelectionFragment.OnFragmentInteractionListener} interface
+ * {@link FragmentController} interface
  * to handle interaction events.
  */
-public class PageSelectionFragment extends Fragment {
+public class PageSelectionFragment extends Fragment implements View.OnClickListener {
 
-    private OnFragmentInteractionListener mListener;
+    private FragmentController fragmentController;
+    private ImageButton zwanzigMinButton;
 
     public PageSelectionFragment() {
         // Required empty public constructor
@@ -31,43 +33,45 @@ public class PageSelectionFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_page_selection, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        Activity activity = getActivity();
+
+        zwanzigMinButton = (ImageButton) activity.findViewById(R.id.zwanzigMinBtn);
+        zwanzigMinButton.setOnClickListener(this);
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public void onAttach(Activity context) {
+        super.onAttach(context);
         try {
-            mListener = (OnFragmentInteractionListener) activity;
+            fragmentController = (FragmentController) context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
+            throw new ClassCastException(context.toString()
+                    + " must implement FragmentController");
         }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
+        fragmentController = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
-    }
+    @Override
+    public void onClick(View v) {
+        String url;
+        switch (v.getId()) {
+            case R.id.zwanzigMinBtn: url = "http://20min.ch";
+                Log.e("PAgeSel", "20min BUtton clicked");
+                break;
+        }
 
+        if (fragmentController != null) {
+            fragmentController.changeFragment(new SurfFragment());
+        }
+
+    }
 }

@@ -1,10 +1,58 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
     tools:context="ch.hsr.userexperience.PageSelectionFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="Hello2" />
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/zwanzigMinBtn"
+        android:layout_margin="10dp"
+        android:layout_weight="0.25"
+        android:src="@drawable/zwanzigmin_logo"
+        android:adjustViewBounds="true"
+        android:padding="15dp"
+        android:scaleType="fitCenter"
+        android:background="@android:drawable/btn_default"/>
 
-</FrameLayout>
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/blickBtn"
+        android:layout_margin="10dp"
+        android:layout_weight="0.25"
+        android:src="@drawable/blick_logo"
+        android:adjustViewBounds="true"
+        android:padding="15dp"
+        android:scaleType="fitCenter"
+        android:background="@android:drawable/btn_default"/>
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/tagiBtn"
+        android:layout_margin="10dp"
+        android:layout_weight="0.25"
+        android:src="@drawable/tagi_logo"
+        android:adjustViewBounds="true"
+        android:padding="30dp"
+        android:scaleType="fitCenter"
+        android:background="@android:drawable/btn_default"/>
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/nzzBtn"
+        android:text="nzz.ch"
+        android:layout_margin="10dp"
+        android:layout_weight="0.25"
+        android:src="@drawable/nzz_logo"
+        android:adjustViewBounds="true"
+        android:padding="25dp"
+        android:scaleType="fitCenter"
+        android:background="@android:drawable/btn_default"/>
+
+
+</LinearLayout>
