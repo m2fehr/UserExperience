@@ -61,7 +61,7 @@
 
         <Space
             android:layout_width="fill_parent"
-            android:layout_height="20px" />
+            android:layout_height="10dp" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -87,7 +87,7 @@
 
         <Space
             android:layout_width="fill_parent"
-            android:layout_height="20px" />
+            android:layout_height="10dp" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -115,7 +115,7 @@
 
         <Space
             android:layout_width="fill_parent"
-            android:layout_height="20px" />
+            android:layout_height="10dp" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -140,6 +140,14 @@
                 android:enabled="true"
                 android:gravity="right" />
         </LinearLayout>
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Weiter"
+            android:id="@+id/TestSelectionBtnWeiter"
+            android:textSize="20sp"
+            android:layout_column="11" />
 
     </LinearLayout>
 </FrameLayout>

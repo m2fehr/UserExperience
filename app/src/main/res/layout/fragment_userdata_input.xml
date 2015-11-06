@@ -6,4 +6,161 @@
     <!-- TODO: Update blank fragment layout -->
 
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Bitte wählen Sie Ihre Altersgruppe aus"
+            android:id="@+id/userdataInputTxtAlter"
+            android:textSize="25sp"
+            android:textColor="#000000" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/userdataInputAlterSpinner"
+            android:spinnerMode="dropdown" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Bitte wählen Sie Ihr Geschlecht aus"
+            android:id="@+id/userdataInputTxtGeschlecht"
+            android:textColor="#000000"
+            android:textSize="25sp" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="männlich"
+                android:id="@+id/userdataInputRBtnM"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:checked="false" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="weiblich"
+                android:id="@+id/userdataInputRBtnW"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:checked="false" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="keine Angabe"
+                android:id="@+id/userdataInputRBtnKA"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:checked="false" />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Wie schätzen Sie Ihren Wohnort ein"
+            android:id="@+id/userdataInputTxtWohnort"
+            android:textColor="#000000"
+            android:textSize="25sp" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stadt"
+                android:id="@+id/userdataInputRBtnStadt"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:checked="false" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Agglo"
+                android:id="@+id/userdataInputRBtnAgg"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:checked="false" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ländlich"
+                android:id="@+id/userdataInputRBtnAusser"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:checked="false" />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Wie schätzen Sie Ihre Geduld beim Surfen ein"
+            android:id="@+id/userdataInputTxtGeduld"
+            android:textColor="#000000"
+            android:textSize="25sp" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="geduldig"
+                android:id="@+id/userdataInputRBtnGed"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:checked="false" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="mittel"
+                android:id="@+id/userdataInputRBtnMitt"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:checked="false" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ungeduldig"
+                android:id="@+id/userdataInputRBtnUnged"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:checked="false" />
+        </RadioGroup>
+
+        <Space
+            android:layout_width="fill_parent"
+            android:layout_height="25dp" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Weiter"
+            android:id="@+id/userdataInputBtnWeiter"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
 </FrameLayout>
