@@ -7,8 +7,9 @@ import android.app.Fragment;
  */
 public interface FragmentController {
 
-    public final static String key1 = "Key1";   //Keys for storeValue()
+    public final static String URL = "url";   //Keys for storeValue()
 
     public void changeFragment(Fragment fragment);
-    public void storeValue(String key, long value);
+    public void storeValue(String key, Object value);
+    public Object getValue(String key);
 }

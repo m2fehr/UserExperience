@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 /**
@@ -19,6 +20,7 @@ public class TestSelectionFragment extends Fragment {
     public final static String TAG = "TestSelectionFragment";
 
     private FragmentController fragmentController;
+    private Button weiterButton;
 
     public TestSelectionFragment() {
         // Required empty public constructor
@@ -38,8 +40,15 @@ public class TestSelectionFragment extends Fragment {
 
         Activity activity = getActivity();
 
-//        webView = (WebView) activity.findViewById(R.id.webView);
-
+        weiterButton = (Button) activity.findViewById(R.id.TestSelectionBtnWeiter);
+        weiterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (fragmentController != null) {
+                    fragmentController.changeFragment(new PageSelectionFragment());
+                }
+            }
+        });
     }
 
     @Override

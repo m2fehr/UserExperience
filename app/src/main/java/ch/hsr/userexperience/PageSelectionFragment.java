@@ -20,6 +20,10 @@ public class PageSelectionFragment extends Fragment implements View.OnClickListe
 
     private FragmentController fragmentController;
     private ImageButton zwanzigMinButton;
+    private ImageButton blickButton;
+    private ImageButton tagiButton;
+    private ImageButton nzzButton;
+
 
     public PageSelectionFragment() {
         // Required empty public constructor
@@ -41,6 +45,12 @@ public class PageSelectionFragment extends Fragment implements View.OnClickListe
 
         zwanzigMinButton = (ImageButton) activity.findViewById(R.id.zwanzigMinBtn);
         zwanzigMinButton.setOnClickListener(this);
+        blickButton = (ImageButton) activity.findViewById(R.id.blickBtn);
+        blickButton.setOnClickListener(this);
+        tagiButton = (ImageButton) activity.findViewById(R.id.tagiBtn);
+        tagiButton.setOnClickListener(this);
+        nzzButton = (ImageButton) activity.findViewById(R.id.nzzBtn);
+        nzzButton.setOnClickListener(this);
     }
 
     @Override
@@ -62,14 +72,24 @@ public class PageSelectionFragment extends Fragment implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        String url;
+        String url = null;
         switch (v.getId()) {
             case R.id.zwanzigMinBtn: url = "http://20min.ch";
-                Log.e("PAgeSel", "20min BUtton clicked");
+                Log.e("PageSel", "20min Button clicked");
+                break;
+            case R.id.blickBtn: url = "http://blick.ch";
+                Log.e("PageSel", "Blick Button clicked");
+                break;
+            case R.id.tagiBtn: url = "http://mobile2.tagesanzeiger.ch";
+                Log.e("PageSel", "Tagi Button clicked");
+                break;
+            case R.id.nzzBtn: url = "http://nzz.ch";
+                Log.e("PageSel", "NZZ Button clicked");
                 break;
         }
 
-        if (fragmentController != null) {
+        if (fragmentController != null && url != null) {
+            fragmentController.storeValue(FragmentController.URL, url);
             fragmentController.changeFragment(new SurfFragment());
         }
 

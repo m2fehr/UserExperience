@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 
 
 /**
@@ -23,6 +24,7 @@ public class SurfFragment extends Fragment {
 
     private FragmentController fragmentController;
     private WebView webView;
+    private Button weiterButton;
 
     public SurfFragment() {
         // Required empty public constructor
@@ -42,6 +44,16 @@ public class SurfFragment extends Fragment {
 
         Activity activity = getActivity();
 
+        weiterButton = (Button) activity.findViewById(R.id.surfFragmentWeiterBtn);
+        weiterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (fragmentController != null) {
+                    fragmentController.changeFragment(new FeedbackFragment());
+                }
+            }
+        });
+
         webView = (WebView) activity.findViewById(R.id.webView);
         webView.setWebViewClient(new WebViewClient() {
             @Override
@@ -50,7 +62,9 @@ public class SurfFragment extends Fragment {
             }
         });
         Log.e(TAG, "load URL");
-        webView.loadUrl("http://20min.ch");
+        if(fragmentController != null) {
+            webView.loadUrl((String) fragmentController.getValue(FragmentController.URL));
+        }
     }
 
     @Override
@@ -69,5 +83,20 @@ public class SurfFragment extends Fragment {
         super.onDetach();
         fragmentController = null;
     }
+
+    public void webViewGoBack() {
+        Log.e(TAG, "webViewGoBack()");
+        webView.goBack();
+    }
+
+    public boolean webViewCanGoBack() {
+        Log.e(TAG, "webViewCanGoBack()");
+        if (webView.canGoBack())
+            return true;
+        else
+            return false;
+    }
+
+
 
 }
