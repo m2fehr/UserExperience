@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements FragmentControlle
             case FragmentController.URL: url = (String) value;
                 break;
         }
+
     }
 
     @Override
