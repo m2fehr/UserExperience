@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 
 /**
@@ -21,6 +24,8 @@ public class TestSelectionFragment extends Fragment {
 
     private FragmentController fragmentController;
     private Button weiterButton;
+    private Spinner testSpinner;
+    private TextView txtTestSelection;
 
     public TestSelectionFragment() {
         // Required empty public constructor
@@ -45,20 +50,35 @@ public class TestSelectionFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (fragmentController != null) {
-                    if(storeValues()){
+                    if (storeValues()) {
                         fragmentController.changeFragment(new PageSelectionFragment());
                     }
 
                 }
             }
         });
+
+        txtTestSelection = (TextView) activity.findViewById(R.id.TestSelectionText1);
+
+        testSpinner = (Spinner) activity.findViewById(R.id.TestSelectionSpinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                activity, R.array.testSelection, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        testSpinner.setAdapter(adapter);
     }
 
     //Speichert und Überprüft die Testdaten
     private boolean storeValues() {
+        boolean testSelection = testSpinner.getItemAtPosition(testSpinner.getSelectedItemPosition()).toString().equals("Bitte Auswählen");
+        boolean testSelection1 = testSpinner.getSelectedItem() == null;
 
-
-        return true;
+        if(testSelection || testSelection1){
+            txtTestSelection.setError("Bitte wählen Sie ein Abo aus");
+            return false;
+        }else{
+            fragmentController.storeValue(fragmentController.ABO, testSpinner.getSelectedItem());
+            return true;
+        }
     }
 
     @Override

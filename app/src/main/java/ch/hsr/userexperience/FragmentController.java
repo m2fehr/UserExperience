@@ -21,6 +21,9 @@ public interface FragmentController {
     public final static String GESCHLECHT = "geschlecht";
     public final static String WOHNORT = "wohnort";
 
+    //Keys für TestSelectionFragment
+    public final static String ABO = "Abo";
+
     public void changeFragment(Fragment fragment);
     public void storeValue(String key, Object value);
     public Object getValue(String key);

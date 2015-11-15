@@ -11,5 +11,10 @@
         <item>46+</item>
     </string-array>
 
+    <string-array name="testSelection">
+        <item>Bitte Auswählen</item>
+        <item>Abo1</item>
+    </string-array>
+
 <!-- TODO: Remove or change this placeholder text -->
 </resources>

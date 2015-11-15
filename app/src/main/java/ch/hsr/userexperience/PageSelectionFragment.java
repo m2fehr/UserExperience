@@ -92,6 +92,5 @@ public class PageSelectionFragment extends Fragment implements View.OnClickListe
             fragmentController.storeValue(FragmentController.URL, url);
             fragmentController.changeFragment(new SurfFragment());
         }
-
     }
 }
