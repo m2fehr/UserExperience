@@ -6,7 +6,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 
 /**
@@ -21,6 +25,15 @@ public class UserdataInputFragment extends Fragment {
 
     private FragmentController fragmentController;
     private Button weiterButton;
+    private TextView txtAlter;
+    private TextView txtGeschlecht;
+    private TextView txtWohnort;
+    private TextView txtGeduld;
+    private Spinner spinnerAlter;
+    private RadioGroup RGGeschlecht;
+    private RadioGroup RGGeduld;
+    private RadioGroup RGWohnort;
+
 
     public UserdataInputFragment() {
         // Required empty public constructor
@@ -45,10 +58,57 @@ public class UserdataInputFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (fragmentController != null) {
-                    fragmentController.changeFragment(new TestSelectionFragment());
+                    if (storeValues()) {
+                        fragmentController.changeFragment(new TestSelectionFragment());
+                    }
                 }
             }
         });
+        txtAlter = (TextView) activity.findViewById(R.id.userdataInputTxtAlter);
+        txtGeschlecht = (TextView) activity.findViewById(R.id.userdataInputTxtGeschlecht);
+        txtWohnort = (TextView) activity.findViewById(R.id.userdataInputTxtWohnort);
+        txtGeduld = (TextView) activity.findViewById(R.id.userdataInputTxtGeduld);
+
+        spinnerAlter = (Spinner) activity.findViewById(R.id.userdataInputAlterSpinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                activity, R.array.userdataInputSpinnerAlter, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerAlter.setAdapter(adapter);
+
+        RGGeschlecht = (RadioGroup) activity.findViewById(R.id.userdataInputRGGeschlecht);
+        RGGeduld = (RadioGroup) activity.findViewById(R.id.userdataInputRGGeduld);
+        RGWohnort = (RadioGroup) activity.findViewById(R.id.userdataInputRGWohnort);
+    }
+
+    //Speichert und Überprüft die Testdaten
+    private boolean storeValues() {
+        boolean alter = spinnerAlter.getItemAtPosition(spinnerAlter.getSelectedItemPosition()).toString().equals("Bitte Auswählen");
+        boolean alter1 = spinnerAlter.getSelectedItem() == null;
+        boolean geschlecht = RGGeschlecht.getCheckedRadioButtonId() == -1;
+        boolean geduld = RGGeduld.getCheckedRadioButtonId() == -1;
+        boolean wohnort = RGWohnort.getCheckedRadioButtonId() == -1;
+
+        if(alter || alter1 || geschlecht || geduld || wohnort){
+            if(alter || alter1){
+                txtAlter.setError("Bitte wählen Sie Ihre Alterskategorie aus.");
+            }
+            if(geschlecht){
+                txtGeschlecht.setError("Bitte wählen Sie Ihr Geschlecht aus.");
+            }
+            if(geduld){
+                txtGeduld.setError("Bitte stufen Sie Ihre Geduld ein.");
+            }
+            if(wohnort){
+                txtWohnort.setError("Bitte wählen Sie die auf Ihren Wohnort zutreffende Beschreibung aus.");
+            }
+            return false;
+        }else{
+            fragmentController.storeValue(fragmentController.ALTER, spinnerAlter.getSelectedItem());
+            fragmentController.storeValue(fragmentController.GESCHLECHT, RGGeschlecht.getCheckedRadioButtonId());
+            fragmentController.storeValue(fragmentController.GEDULD, RGGeduld.getCheckedRadioButtonId());
+            fragmentController.storeValue(fragmentController.WOHNORT, RGWohnort.getCheckedRadioButtonId());
+            return true;
+        }
     }
 
     @Override

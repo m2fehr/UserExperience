@@ -45,10 +45,20 @@ public class TestSelectionFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (fragmentController != null) {
-                    fragmentController.changeFragment(new PageSelectionFragment());
+                    if(storeValues()){
+                        fragmentController.changeFragment(new PageSelectionFragment());
+                    }
+
                 }
             }
         });
+    }
+
+    //Speichert und Überprüft die Testdaten
+    private boolean storeValues() {
+
+
+        return true;
     }
 
     @Override

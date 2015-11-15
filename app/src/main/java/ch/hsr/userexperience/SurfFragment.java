@@ -49,7 +49,9 @@ public class SurfFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (fragmentController != null) {
-                    fragmentController.changeFragment(new FeedbackFragment());
+                    if(storeResults()){
+                        fragmentController.changeFragment(new FeedbackFragment());
+                    }
                 }
             }
         });
@@ -97,6 +99,10 @@ public class SurfFragment extends Fragment {
             return false;
     }
 
+    //Überprüfen und Speichern der Testdaten
+    public boolean storeResults(){
 
 
+        return true;
+    }
 }

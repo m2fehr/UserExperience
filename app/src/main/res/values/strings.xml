@@ -1,6 +1,15 @@
 <resources>
     <string name="app_name">UserExperience</string>
     <string name="action_settings">Settings</string>
+    
+    <string-array name="userdataInputSpinnerAlter">
+        <!-- Wird ein Default Element benötigt? -->
+        <item>Bitte Auswählen</item>
+        <item>0-15</item>
+        <item>16-30</item>
+        <item>31-45</item>
+        <item>46+</item>
+    </string-array>
 
 <!-- TODO: Remove or change this placeholder text -->
 </resources>

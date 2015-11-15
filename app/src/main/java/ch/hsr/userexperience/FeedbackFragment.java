@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
 
 /**
@@ -21,6 +23,10 @@ public class FeedbackFragment extends Fragment {
 
     private FragmentController fragmentController;
     private Button weiterButton;
+    private RadioGroup rg1;
+    private RadioGroup rg2;
+    private TextView tv1;
+    private TextView tv2;
 
     public FeedbackFragment() {
         // Required empty public constructor
@@ -45,10 +51,35 @@ public class FeedbackFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (fragmentController != null) {
-                    fragmentController.changeFragment(new TestSummaryFragment());
+                    if(storeValues()){
+                        fragmentController.changeFragment(new TestSummaryFragment());
+                    }
                 }
             }
         });
+        rg1 = (RadioGroup) activity.findViewById(R.id.radioGroup);
+        rg2 = (RadioGroup) activity.findViewById(R.id.radioGroup2);
+        tv1 = (TextView) activity.findViewById(R.id.textView);
+        tv2 = (TextView) activity.findViewById(R.id.textView2);
+    }
+
+    //Speichert die Feedbacks ab.
+    private boolean storeValues() {
+        int r1 = rg1.getCheckedRadioButtonId();
+        int r2 = rg2.getCheckedRadioButtonId();
+        if(r1 == -1 || r2 == -1){
+            if(r1 == -1){
+                tv1.setError("Bitte wählen Sie eine Option aus");
+            }
+            if(r2 == -1){
+                tv2.setError("Bitte wählen Sie eine Option aus");
+            }
+            return false;
+        }else{
+            fragmentController.storeValue(FragmentController.RGSURFGESCHW, rg1.getCheckedRadioButtonId());
+            fragmentController.storeValue(FragmentController.RGABBRUCH, rg2.getCheckedRadioButtonId());
+            return true;
+        }
     }
 
     @Override
