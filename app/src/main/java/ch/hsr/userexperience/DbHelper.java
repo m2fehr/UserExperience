@@ -2,8 +2,14 @@ package ch.hsr.userexperience;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.MatrixCursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import java.util.ArrayList;
 
 /**
  * Created by Matthias on 13.11.15.
@@ -80,52 +86,7 @@ public class DbHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    //returns the new rowId (primary key) or -1 if user is null
-    public long insertUser(User user) {
-        if (user == null)
-            return -1;
 
-        // Gets the data repository in write mode
-        SQLiteDatabase db = getWritableDatabase();
-
-        // Create a new map of values, where column names are the keys
-        ContentValues values = new ContentValues();
-        values.put(USER_COLUMN_AGE, user.get_age());
-        values.put(USER_COLUMN_GENDER, user.get_gender());
-        values.put(USER_COLUMN_LOCATION, user.get_location());
-        values.put(USER_COLUMN_PATIENCE, user.get_patience());
-        values.put(USER_COLUMN_ABO, user.get_abo());
-        values.put(USER_COLUMN_SATISFACTION, user.get_satisfaction());
-        values.put(USER_COLUMN_ABORTED, user.get_aborted());
-
-        // Insert the new row, returning the primary key value of the new row
-        long rowId = db.insert(USER_TABLE_NAME, null, values);
-        db.close();
-        return rowId;
-    }
-
-    //returns the new rowId (primary key) or -1 if results is null
-    public long insertTestResults(long userID, TestResults results) {
-        if (results == null)
-            return -1;
-
-        // Gets the data repository in write mode
-        SQLiteDatabase db = getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        for (TestEntry entry : results.getEntrys()) {
-            values.put(TEST_COLUMN_USERID, userID);
-            values.put(TEST_COLUMN_SITE, entry.getSite());
-            values.put(USER_COLUMN_LOCATION, entry.getTime());
-        }
-
-        // Insert the new row, returning the primary key value of the new row
-        long rowId = db.insert(TEST_TABLE_NAME, null, values);
-        db.close();
-        return rowId;
-    }
-
-    //Convenient and efficient way to insert both at the same time
     public void insertUserAndTests(User user, TestResults results) {
         if(user != null && results != null) {
             SQLiteDatabase db = getWritableDatabase();
@@ -146,10 +107,66 @@ public class DbHelper extends SQLiteOpenHelper {
             for (TestEntry entry : results.getEntrys()) {
                 values.put(TEST_COLUMN_USERID, userId);
                 values.put(TEST_COLUMN_SITE, entry.getSite());
-                values.put(USER_COLUMN_LOCATION, entry.getTime());
+                values.put(TEST_COLUMN_PLT, entry.getTime());
             }
             db.insert(TEST_TABLE_NAME, null, values);
             db.close();
         }
+    }
+
+
+
+
+
+    //--------Here Follows the needed Stuff for AndroidDatabaseManager------------
+
+    public ArrayList<Cursor> getData(String Query){
+        //get writable database
+        SQLiteDatabase sqlDB = this.getWritableDatabase();
+        String[] columns = new String[] { "mesage" };
+        //an array list of cursor to save two cursors one has results from the query
+        //other cursor stores error message if any errors are triggered
+        ArrayList<Cursor> alc = new ArrayList<Cursor>(2);
+        MatrixCursor Cursor2= new MatrixCursor(columns);
+        alc.add(null);
+        alc.add(null);
+
+
+        try{
+            String maxQuery = Query ;
+            //execute the query results will be save in Cursor c
+            Cursor c = sqlDB.rawQuery(maxQuery, null);
+
+
+            //add value to cursor2
+            Cursor2.addRow(new Object[] { "Success" });
+
+            alc.set(1,Cursor2);
+            if (null != c && c.getCount() > 0) {
+
+
+                alc.set(0,c);
+                c.moveToFirst();
+
+                return alc ;
+            }
+            return alc;
+        } catch(SQLException sqlEx){
+            Log.d("printing exception", sqlEx.getMessage());
+            //if any exceptions are triggered save the error message to cursor an return the arraylist
+            Cursor2.addRow(new Object[] { ""+sqlEx.getMessage() });
+            alc.set(1,Cursor2);
+            return alc;
+        } catch(Exception ex){
+
+            Log.d("printing exception", ex.getMessage());
+
+            //if any exceptions are triggered save the error message to cursor an return the arraylist
+            Cursor2.addRow(new Object[] { ""+ex.getMessage() });
+            alc.set(1,Cursor2);
+            return alc;
+        }
+
+
     }
 }

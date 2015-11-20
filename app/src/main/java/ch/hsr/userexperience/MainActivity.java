@@ -17,6 +17,9 @@ public class MainActivity extends AppCompatActivity implements FragmentControlle
     private Fragment currentFragment;
     private String url; //temporary
 
+    private User currentUser;
+    private TestResults currentTestResults;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,10 +70,18 @@ public class MainActivity extends AppCompatActivity implements FragmentControlle
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_cancel) {
+            if (currentFragment instanceof SurfFragment || currentFragment instanceof PageSelectionFragment)
+                changeFragment(new FeedbackFragment());
+            else
+                changeFragment(new InformationFragment());
             return true;
         }
-
+        if (id == R.id.action_DBopen) {
+//            Intent dbmanager = new Intent(this, AndroidDatabaseManager.class);
+//            startActivity(dbmanager);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -79,8 +90,14 @@ public class MainActivity extends AppCompatActivity implements FragmentControlle
         Log.e(TAG, "change Fragment");
         currentFragment = fragment;
         FragmentManager fm = getFragmentManager();
-        if (fragment instanceof InformationFragment)
+        if (fragment instanceof InformationFragment) {
             fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            currentUser = new User();
+            currentTestResults = new TestResults();
+        }
+        else if (fragment instanceof TestSummaryFragment) {
+            //dbHelper.insertUserAndTests(currentUser, currentTestResults);
+        }
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.addToBackStack(null);
@@ -89,11 +106,37 @@ public class MainActivity extends AppCompatActivity implements FragmentControlle
 
     @Override
     public void storeValue(String key, Object value) {
+        if(currentTestResults == null)
+            return;
         switch (key) {
             case FragmentController.URL: url = (String) value;
                 break;
+            case FragmentController.TESTENTRY: currentTestResults.addEntry((TestEntry) value);
+                break;
         }
+    }
 
+    @Override
+    public void storeValue(String key, int value) {
+        if (currentUser == null)
+            return;
+        //ToDo: Zuerst richtige Werte übergeben!
+//        switch (key) {
+//            case FragmentController.ALTER: currentUser.set_age(value);
+//                break;
+//            case FragmentController.GEDULD: currentUser.set_patience(value);
+//                break;
+//            case FragmentController.GESCHLECHT: currentUser.set_gender(value);
+//                break;
+//            case FragmentController.WOHNORT: currentUser.set_location(value);
+//                break;
+//            case FragmentController.ABO: currentUser.set_abo(value);
+//                break;
+//            case FragmentController.RGABBRUCH: currentUser.set_aborted(value);
+//                break;
+//            case FragmentController.RGSURFGESCHW: currentUser.set_satisfaction(value);
+//                break;
+//        }
     }
 
     @Override

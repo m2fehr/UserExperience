@@ -24,7 +24,11 @@ public interface FragmentController {
     //Keys für TestSelectionFragment
     public final static String ABO = "Abo";
 
+    //Keys für SurfFragment
+    public final static String TESTENTRY = "TestEntry";
+
     public void changeFragment(Fragment fragment);
     public void storeValue(String key, Object value);
+    public void storeValue(String key, int value);
     public Object getValue(String key);
 }
