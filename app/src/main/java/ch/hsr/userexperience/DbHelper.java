@@ -48,15 +48,20 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String GENDER_COLUMN_ID = "id";
     public static final String GENDER_COLUMN_GENDER = "geschlecht";
 
+    //Table Location
+    public static final String LOCATION_TABLE_NAME = "location";
+    public static final String LOCATION_COLUMN_ID = "id";
+    public static final String LOCATION_COLUMN_LOCATION = "wohnort";
+
     //Table Patience
     public static final String PATIENCE_TABLE_NAME = "patience";
     public static final String PATIENCE_COLUMN_ID = "id";
     public static final String PATIENCE_COLUMN_PATIENCE = "geduld";
 
-    //Table Abo
-    public static final String ABO_TABLE_NAME = "abo";
-    public static final String ABO_COLUMN_ID = "id";
-    public static final String ABO_COLUMN_ABONAME = "aboname";
+//    Table Abo
+//    public static final String ABO_TABLE_NAME = "abo";
+//    public static final String ABO_COLUMN_ID = "id";
+//    public static final String ABO_COLUMN_ABONAME = "aboname";
 
     //Table Satisfaction
     public static final String SATISFACTION_TABLE_NAME = "satisfaction";
@@ -88,17 +93,17 @@ public class DbHelper extends SQLiteOpenHelper {
                 USER_COLUMN_ID + INTEGER_PK + COMMA_SEP +
                 USER_COLUMN_AGE + INTEGER_REF + AGE_TABLE_NAME + "(" + AGE_COLUMN_ID + CLOSE_DELETE_CASCADE + COMMA_SEP +
                 USER_COLUMN_GENDER + INTEGER_REF + GENDER_TABLE_NAME + "(" + GENDER_COLUMN_ID + CLOSE_DELETE_CASCADE + COMMA_SEP +
-                USER_COLUMN_LOCATION + TEXT_TYPE + COMMA_SEP +
+                USER_COLUMN_LOCATION + INTEGER_REF + LOCATION_TABLE_NAME + "(" + LOCATION_COLUMN_ID + CLOSE_DELETE_CASCADE + COMMA_SEP +
                 USER_COLUMN_PATIENCE + INTEGER_REF + PATIENCE_TABLE_NAME + "(" + PATIENCE_COLUMN_ID + CLOSE_DELETE_CASCADE + COMMA_SEP +
-                USER_COLUMN_ABO + INTEGER_REF + ABO_TABLE_NAME + "(" + ABO_COLUMN_ID + CLOSE_DELETE_CASCADE + COMMA_SEP +
+                USER_COLUMN_ABO + TEXT_TYPE + COMMA_SEP +
                 USER_COLUMN_SATISFACTION + INTEGER_REF + SATISFACTION_TABLE_NAME + "(" + SATISFACTION_COLUMN_ID + CLOSE_DELETE_CASCADE + COMMA_SEP +
-                USER_COLUMN_ABORTED + INTEGER_REF + ABO_TABLE_NAME + "(" + ABORTED_COLUMN_ID + CLOSE_DELETE_CASCADE +
+                USER_COLUMN_ABORTED + INTEGER_REF + ABORTED_TABLE_NAME + "(" + ABORTED_COLUMN_ID + CLOSE_DELETE_CASCADE +
                 " )";
 
         final String createTestResultsTable =
             "CREATE TABLE " + TEST_TABLE_NAME + " (" +
                 TEST_COLUMN_ID + INTEGER_PK + COMMA_SEP +
-                TEST_COLUMN_USERID + INTEGER_REF + USER_TABLE_NAME + "(" + USER_COLUMN_ID + ") ON DELETE CASCADE" + COMMA_SEP +
+                TEST_COLUMN_USERID + INTEGER_REF + USER_TABLE_NAME + "(" + USER_COLUMN_ID + CLOSE_DELETE_CASCADE + COMMA_SEP +
                 TEST_COLUMN_SITE + TEXT_TYPE + COMMA_SEP +
                 TEST_COLUMN_PLT + INTEGER_TYPE +
                 " )";
@@ -115,17 +120,25 @@ public class DbHelper extends SQLiteOpenHelper {
                         GENDER_COLUMN_GENDER + TEXT_TYPE +
                         " )";
 
+        final String createLocationTable =
+                "CREATE TABLE " + LOCATION_TABLE_NAME + " (" +
+                        LOCATION_COLUMN_ID + INTEGER_PK + COMMA_SEP +
+                        LOCATION_COLUMN_LOCATION + TEXT_TYPE +
+                        " )";
+
         final String createPatienceTable =
                 "CREATE TABLE " + PATIENCE_TABLE_NAME + " (" +
                         PATIENCE_COLUMN_ID + INTEGER_PK + COMMA_SEP +
                         PATIENCE_COLUMN_PATIENCE + TEXT_TYPE +
                         " )";
 
+/*
         final String createAboTable =
                 "CREATE TABLE " + ABO_TABLE_NAME + " (" +
                         ABO_COLUMN_ID + INTEGER_PK + COMMA_SEP +
                         ABO_COLUMN_ABONAME + TEXT_TYPE +
                         " )";
+*/
 
         final String createSatisfactionTable =
                 "CREATE TABLE " + SATISFACTION_TABLE_NAME + " (" +
@@ -142,8 +155,9 @@ public class DbHelper extends SQLiteOpenHelper {
         //Helper tables
         db.execSQL(createAgeGroupTable);
         db.execSQL(createGenderTable);
+        db.execSQL(createLocationTable);
         db.execSQL(createPatienceTable);
-        db.execSQL(createAboTable);
+       // db.execSQL(createAboTable);
         db.execSQL(createSatisfactionTable);
         db.execSQL(createAbortedTable);
 
@@ -168,10 +182,12 @@ public class DbHelper extends SQLiteOpenHelper {
                 "DROP TABLE IF EXISTS " + PATIENCE_TABLE_NAME;
         final String deleteGenderTable =
                 "DROP TABLE IF EXISTS " + GENDER_TABLE_NAME;
+        final String deleteLocationTable =
+                "DROP TABLE IF EXISTS " + LOCATION_TABLE_NAME;
         final String deletePateinceTable =
                 "DROP TABLE IF EXISTS " + PATIENCE_TABLE_NAME;
-        final String deleteAboTable =
-                "DROP TABLE IF EXISTS " + ABO_TABLE_NAME;
+//        final String deleteAboTable =
+//                "DROP TABLE IF EXISTS " + ABO_TABLE_NAME;
         final String deleteSatisfactionTable=
                 "DROP TABLE IF EXISTS " + SATISFACTION_TABLE_NAME;
         final String deleteAbortedTable =
@@ -179,13 +195,18 @@ public class DbHelper extends SQLiteOpenHelper {
 
         db.execSQL(deleteAgeGroupTable);
         db.execSQL(deleteGenderTable);
+        db.execSQL(deleteLocationTable);
         db.execSQL(deletePateinceTable);
-        db.execSQL(deleteAboTable);
+//        db.execSQL(deleteAboTable);
         db.execSQL(deleteSatisfactionTable);
         db.execSQL(deleteAbortedTable);
         db.execSQL(deleteTestResultsTable);
         db.execSQL(deleteUserTable);
         onCreate(db);
+    }
+
+    public void insertAgeGroups(){
+
     }
 
 

@@ -25,14 +25,14 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="perfekt"
+            android:text="schnell"
             android:id="@+id/radioButton"
             android:checked="false" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="schnell"
+            android:text="mittel"
             android:id="@+id/radioButton2"
             android:checked="false" />
 
