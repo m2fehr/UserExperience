@@ -121,22 +121,22 @@ public class MainActivity extends AppCompatActivity implements FragmentControlle
         if (currentUser == null)
             return;
         //ToDo: Zuerst richtige Werte übergeben!
-//        switch (key) {
-//            case FragmentController.ALTER: currentUser.set_age(value);
-//                break;
-//            case FragmentController.GEDULD: currentUser.set_patience(value);
-//                break;
-//            case FragmentController.GESCHLECHT: currentUser.set_gender(value);
-//                break;
-//            case FragmentController.WOHNORT: currentUser.set_location(value);
-//                break;
-//            case FragmentController.ABO: currentUser.set_abo(value);
-//                break;
-//            case FragmentController.RGABBRUCH: currentUser.set_aborted(value);
-//                break;
-//            case FragmentController.RGSURFGESCHW: currentUser.set_satisfaction(value);
-//                break;
-//        }
+        switch (key) {
+            case FragmentController.ALTER: currentUser.set_age(value);
+                break;
+            case FragmentController.GEDULD: currentUser.set_patience(value);
+                break;
+            case FragmentController.GESCHLECHT: currentUser.set_gender(value);
+                break;
+            case FragmentController.WOHNORT: currentUser.set_location(value);
+                break;
+            case FragmentController.ABO: currentUser.set_abo(value);
+                break;
+            case FragmentController.RGABBRUCH: currentUser.set_aborted(value);
+                break;
+            case FragmentController.RGSURFGESCHW: currentUser.set_satisfaction(value);
+                break;
+        }
     }
 
     @Override

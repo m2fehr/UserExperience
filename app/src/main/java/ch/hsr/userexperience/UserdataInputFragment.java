@@ -3,6 +3,7 @@ package ch.hsr.userexperience;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -103,11 +104,83 @@ public class UserdataInputFragment extends Fragment {
             }
             return false;
         }else{
-            fragmentController.storeValue(fragmentController.ALTER, spinnerAlter.getSelectedItem());
-            fragmentController.storeValue(fragmentController.GESCHLECHT, RGGeschlecht.getCheckedRadioButtonId());
-            fragmentController.storeValue(fragmentController.GEDULD, RGGeduld.getCheckedRadioButtonId());
-            fragmentController.storeValue(fragmentController.WOHNORT, RGWohnort.getCheckedRadioButtonId());
+            storeValueAlter();
+            storeValueGeschlecht();
+            storeValueGeduld();
+            storeValueWohnort();
+//            fragmentController.storeValue(fragmentController.ALTER, spinnerAlter.getSelectedItem());
+//            fragmentController.storeValue(fragmentController.GESCHLECHT, RGGeschlecht.getCheckedRadioButtonId());
+//            fragmentController.storeValue(fragmentController.GEDULD, RGGeduld.getCheckedRadioButtonId());
+//            fragmentController.storeValue(fragmentController.WOHNORT, RGWohnort.getCheckedRadioButtonId());
             return true;
+        }
+    }
+
+    private void storeValueWohnort() {
+        switch (RGWohnort.getCheckedRadioButtonId()){
+            case R.id.userdataInputRBtnStadt:
+                fragmentController.storeValue(fragmentController.WOHNORT, 0);
+                break;
+            case R.id.userdataInputRBtnAgg:
+                fragmentController.storeValue(fragmentController.WOHNORT, 1);
+                break;
+            case R.id.userdataInputRBtnAusser:
+                fragmentController.storeValue(fragmentController.WOHNORT, 3);
+                break;
+            default:
+                Log.e("storeValueWohnort", "Fehler bei auslesen des Wohnortes");
+        }
+    }
+
+    private void storeValueGeduld() {
+        switch(RGGeduld.getCheckedRadioButtonId()){
+            case R.id.userdataInputRBtnGed:
+                fragmentController.storeValue(fragmentController.GEDULD, 0);
+                break;
+            case R.id.userdataInputRBtnMitt:
+                fragmentController.storeValue(fragmentController.GEDULD, 1);
+                break;
+            case R.id.userdataInputRBtnUnged:
+                fragmentController.storeValue(fragmentController.GEDULD, 2);
+                break;
+            default:
+                Log.e("storeValueGeduld", "Fehler bei auslesen der Geduld");
+        }
+    }
+
+    private void storeValueGeschlecht() {
+        switch(RGGeschlecht.getCheckedRadioButtonId()){
+            case R.id.userdataInputRBtnM:
+                fragmentController.storeValue(fragmentController.GESCHLECHT, 0);
+                break;
+            case R.id.userdataInputRBtnW:
+                fragmentController.storeValue(fragmentController.GESCHLECHT, 1);
+                break;
+            default:
+                Log.e("storeValueGeschlecht", "Fehler bei auslesen des Geschlechtes");
+        }
+    }
+
+    private void storeValueAlter() {
+        switch(spinnerAlter.getSelectedItemPosition()){
+            case 1:
+                fragmentController.storeValue(fragmentController.ALTER, 0);
+                Log.e("StoreAlter", "0-15");
+                break;
+            case 2:
+                fragmentController.storeValue(fragmentController.ALTER, 1);
+                Log.e("StoreAlter", "16-30");
+                break;
+            case 3:
+                fragmentController.storeValue(fragmentController.ALTER, 2);
+                Log.e("StoreAlter", "31-45");
+                break;
+            case 4:
+                fragmentController.storeValue(fragmentController.ALTER, 3);
+                Log.e("StoreAlter", "46-");
+                break;
+            default:
+                Log.e("StoreAlter", "Fehler bei auslesen der Altersgruppe aus dem Spinner");
         }
     }
 

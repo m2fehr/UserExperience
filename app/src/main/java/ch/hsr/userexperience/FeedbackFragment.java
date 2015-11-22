@@ -56,10 +56,10 @@ public class FeedbackFragment extends Fragment {
                 }
             }
         });
-        rg1 = (RadioGroup) activity.findViewById(R.id.radioGroup);
-        rg2 = (RadioGroup) activity.findViewById(R.id.radioGroup2);
-        tv1 = (TextView) activity.findViewById(R.id.textView);
-        tv2 = (TextView) activity.findViewById(R.id.textView2);
+        rg1 = (RadioGroup) activity.findViewById(R.id.RGSurfgeschw);
+        rg2 = (RadioGroup) activity.findViewById(R.id.RGAbbruchGrund);
+        tv1 = (TextView) activity.findViewById(R.id.txtSurfgeschwindigkeit);
+        tv2 = (TextView) activity.findViewById(R.id.txtAbbruchGrund);
     }
 
     //Speichert die Feedbacks ab.
@@ -75,8 +75,38 @@ public class FeedbackFragment extends Fragment {
             }
             return false;
         }else{
-            fragmentController.storeValue(FragmentController.RGSURFGESCHW, rg1.getCheckedRadioButtonId());
-            fragmentController.storeValue(FragmentController.RGABBRUCH, rg2.getCheckedRadioButtonId());
+            //Für beite RadioGroups:
+            // Es wird die durch die Funktion getCheckedRadioButtonId() zurückgegebene ID
+            //für jeden Button geprüft und beim passenden Button wird die storeValue()
+            //Funktion aufgerufen mit der ID gemäss DB-Schema.
+            switch(r1){
+                case R.id.RBGschnell:
+                    fragmentController.storeValue(FragmentController.RGSURFGESCHW, 0);
+                    break;
+                case R.id.RBGmittel:
+                    fragmentController.storeValue(FragmentController.RGSURFGESCHW, 1);
+                    break;
+                case R.id.RBGlangsam:
+                    fragmentController.storeValue(FragmentController.RGSURFGESCHW, 2);
+                    break;
+                case R.id.RBGunbrauchbar:
+                    fragmentController.storeValue(FragmentController.RGSURFGESCHW, 3);
+                    break;
+            }
+            switch(r2){
+                case R.id.RBAkeineAngabe:
+                    fragmentController.storeValue(FragmentController.RGABBRUCH, 0);
+                    break;
+                case R.id.RBAkeineLust:
+                    fragmentController.storeValue(FragmentController.RGABBRUCH, 1);
+                    break;
+                case R.id.RBAunbrauchbar:
+                    fragmentController.storeValue(FragmentController.RGABBRUCH, 2);
+                    break;
+                case R.id.RBAweitereTests:
+                    fragmentController.storeValue(FragmentController.RGABBRUCH, 3);
+                    break;
+            }
             return true;
         }
     }
@@ -97,5 +127,4 @@ public class FeedbackFragment extends Fragment {
         super.onDetach();
         fragmentController = null;
     }
-
 }

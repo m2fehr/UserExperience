@@ -7,7 +7,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Surfgeschwindigkeit"
-        android:id="@+id/textView"
+        android:id="@+id/txtSurfgeschwindigkeit"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_marginStart="30dp"
@@ -16,38 +16,38 @@
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
-        android:layout_alignStart="@+id/textView"
+        android:layout_below="@+id/txtSurfgeschwindigkeit"
+        android:layout_alignStart="@+id/txtSurfgeschwindigkeit"
         android:layout_marginTop="15dp"
         android:layout_alignParentEnd="true"
-        android:id="@+id/radioGroup">
+        android:id="@+id/RGSurfgeschw">
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="schnell"
-            android:id="@+id/radioButton"
+            android:id="@+id/RBGschnell"
             android:checked="false" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="mittel"
-            android:id="@+id/radioButton2"
+            android:id="@+id/RBGmittel"
             android:checked="false" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="langsam"
-            android:id="@+id/radioButton3"
+            android:id="@+id/RBGlangsam"
             android:checked="false" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="unbrauchbar"
-            android:id="@+id/radioButton4"
+            android:id="@+id/RBGunbrauchbar"
             android:checked="false" />
     </RadioGroup>
 
@@ -56,46 +56,46 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Warum wurde der Test abgebrochen?"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/radioGroup"
-        android:layout_alignStart="@+id/radioGroup"
+        android:id="@+id/txtAbbruchGrund"
+        android:layout_below="@+id/RGSurfgeschw"
+        android:layout_alignStart="@+id/RGSurfgeschw"
         android:layout_marginTop="30dp" />
 
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView2"
-        android:layout_alignStart="@+id/textView"
+        android:layout_below="@+id/txtAbbruchGrund"
+        android:layout_alignStart="@+id/txtSurfgeschwindigkeit"
         android:layout_marginTop="15dp"
         android:layout_alignParentEnd="true"
-        android:id="@+id/radioGroup2">
+        android:id="@+id/RGAbbruchGrund">
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="keine Angabe"
-            android:id="@+id/radioButton5"
+            android:id="@+id/RBAkeineAngabe"
             android:checked="false" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="keine Lust mehr"
-            android:id="@+id/radioButton6"
+            android:id="@+id/RBAkeineLust"
             android:checked="false" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="unbrauchbar"
-            android:id="@+id/radioButton7"
+            android:id="@+id/RBAunbrauchbar"
             android:checked="false" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="um andere Option zu testen"
-            android:id="@+id/radioButton8"
+            android:id="@+id/RBAweitereTests"
             android:checked="false" />
     </RadioGroup>
 
@@ -103,7 +103,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Weiter"
-        android:layout_below="@+id/radioGroup2"
+        android:layout_below="@+id/RGAbbruchGrund"
         android:layout_marginTop="15dp"
         android:id="@+id/feedbackFragmentWeiterBtn"/>
 
