@@ -16,27 +16,65 @@ import java.util.ArrayList;
  */
 public class DbHelper extends SQLiteOpenHelper {
 
+    //DB Erstellen
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "UserExperience.db";
 
+    //Table user
     public static final String USER_TABLE_NAME = "users";
     public static final String USER_COLUMN_ID = "id";
-    public static final String USER_COLUMN_AGE = "age";
-    public static final String USER_COLUMN_GENDER = "gender";
+    public static final String USER_COLUMN_AGE = "age id";
+    public static final String USER_COLUMN_GENDER = "gender id";
     public static final String USER_COLUMN_LOCATION = "location";
-    public static final String USER_COLUMN_PATIENCE = "patience";
-    public static final String USER_COLUMN_ABO = "abo";
-    public static final String USER_COLUMN_SATISFACTION = "satisfaction";
-    public static final String USER_COLUMN_ABORTED  = "aborted";
+    public static final String USER_COLUMN_PATIENCE = "patience id";
+    public static final String USER_COLUMN_ABO = "abo id";
+    public static final String USER_COLUMN_SATISFACTION = "satisfaction id";
+    public static final String USER_COLUMN_ABORTED  = "aborted id";
 
+    //Table Testresults
     public static final String TEST_TABLE_NAME = "tests";
     public static final String TEST_COLUMN_ID = "id";
     public static final String TEST_COLUMN_USERID = "userid";
     public static final String TEST_COLUMN_SITE = "site";
     public static final String TEST_COLUMN_PLT = "plt";
 
+    //Table Age
+    public static final String AGE_TABLE_NAME = "age";
+    public static final String AGE_COLUMN_ID = "id";
+    public static final String AGE_COLUMN_GROUP = "group";
+
+    //Table Gender
+    public static final String GENDER_TABLE_NAME = "gender";
+    public static final String GENDER_COLUMN_ID = "id";
+    public static final String GENDER_COLUMN_GENDER = "geschlecht";
+
+    //Table Patience
+    public static final String PATIENCE_TABLE_NAME = "patience";
+    public static final String PATIENCE_COLUMN_ID = "id";
+    public static final String PATIENCE_COLUMN_PATIENCE = "geduld";
+
+    //Table Abo
+    public static final String ABO_TABLE_NAME = "abo";
+    public static final String ABO_COLUMN_ID = "id";
+    public static final String ABO_COLUMN_ABONAME = "aboname";
+
+    //Table Satisfaction
+    public static final String SATISFACTION_TABLE_NAME = "satisfaction";
+    public static final String SATISFACTION_COLUMN_ID ="id";
+    public static final String SATISFACTION_COLUMN_SATISFACTION = "zufriedenheit";
+
+    //Table Aborted
+    public static final String ABORTED_TABLE_NAME = "aborted";
+    public static final String ABORTED_COLUMN_ID = "id";
+    public static final String ABORTED_COLUMN_REASON = "Reason";
+
+    //Div. Strings
     private static final String TEXT_TYPE = " TEXT";
     private static final String COMMA_SEP = ",";
+    private static final String INTEGER_TYPE = " INTEGER";
+    private static final String INTEGER_PK = " INTEGER PRIMARY KEY";
+    private static final String INTEGER_REF = " INTEGER REFERENCES ";
+    private static final String CLOSE_DELETE_CASCADE = ") ON DELETE CASCADE";
 
 
     public DbHelper(Context context) {
@@ -47,24 +85,69 @@ public class DbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         final String createUserTable =
             "CREATE TABLE " + USER_TABLE_NAME + " (" +
-                USER_COLUMN_ID + " INTEGER PRIMARY KEY," +
-                USER_COLUMN_AGE + TEXT_TYPE + COMMA_SEP +
-                USER_COLUMN_GENDER + TEXT_TYPE + COMMA_SEP +
+                USER_COLUMN_ID + INTEGER_PK + COMMA_SEP +
+                USER_COLUMN_AGE + INTEGER_REF + AGE_TABLE_NAME + "(" + AGE_COLUMN_ID + CLOSE_DELETE_CASCADE + COMMA_SEP +
+                USER_COLUMN_GENDER + INTEGER_REF + GENDER_TABLE_NAME + "(" + GENDER_COLUMN_ID + CLOSE_DELETE_CASCADE + COMMA_SEP +
                 USER_COLUMN_LOCATION + TEXT_TYPE + COMMA_SEP +
-                USER_COLUMN_PATIENCE + TEXT_TYPE + COMMA_SEP +
-                USER_COLUMN_ABO + TEXT_TYPE + COMMA_SEP +
-                USER_COLUMN_SATISFACTION + TEXT_TYPE + COMMA_SEP +
-                USER_COLUMN_ABORTED + TEXT_TYPE +
-        " )";
+                USER_COLUMN_PATIENCE + INTEGER_REF + PATIENCE_TABLE_NAME + "(" + PATIENCE_COLUMN_ID + CLOSE_DELETE_CASCADE + COMMA_SEP +
+                USER_COLUMN_ABO + INTEGER_REF + ABO_TABLE_NAME + "(" + ABO_COLUMN_ID + CLOSE_DELETE_CASCADE + COMMA_SEP +
+                USER_COLUMN_SATISFACTION + INTEGER_REF + SATISFACTION_TABLE_NAME + "(" + SATISFACTION_COLUMN_ID + CLOSE_DELETE_CASCADE + COMMA_SEP +
+                USER_COLUMN_ABORTED + INTEGER_REF + ABO_TABLE_NAME + "(" + ABORTED_COLUMN_ID + CLOSE_DELETE_CASCADE +
+                " )";
 
         final String createTestResultsTable =
             "CREATE TABLE " + TEST_TABLE_NAME + " (" +
-                TEST_COLUMN_ID + " INTEGER PRIMARY KEY," +
-                TEST_COLUMN_USERID + " INTEGER REFERENCES " + USER_TABLE_NAME + "(" + USER_COLUMN_ID + ") ON DELETE CASCADE" + COMMA_SEP +
+                TEST_COLUMN_ID + INTEGER_PK + COMMA_SEP +
+                TEST_COLUMN_USERID + INTEGER_REF + USER_TABLE_NAME + "(" + USER_COLUMN_ID + ") ON DELETE CASCADE" + COMMA_SEP +
                 TEST_COLUMN_SITE + TEXT_TYPE + COMMA_SEP +
-                TEST_COLUMN_PLT + " INTEGER" +
+                TEST_COLUMN_PLT + INTEGER_TYPE +
                 " )";
 
+        final String createAgeGroupTable =
+                "CREATE TABLE " + AGE_TABLE_NAME + " (" +
+                        AGE_COLUMN_ID + INTEGER_PK + COMMA_SEP +
+                        AGE_COLUMN_GROUP + TEXT_TYPE +
+                        " )";
+
+        final String createGenderTable =
+                "CREATE TABLE " + GENDER_TABLE_NAME + " (" +
+                        GENDER_COLUMN_ID + INTEGER_PK + COMMA_SEP +
+                        GENDER_COLUMN_GENDER + TEXT_TYPE +
+                        " )";
+
+        final String createPatienceTable =
+                "CREATE TABLE " + PATIENCE_TABLE_NAME + " (" +
+                        PATIENCE_COLUMN_ID + INTEGER_PK + COMMA_SEP +
+                        PATIENCE_COLUMN_PATIENCE + TEXT_TYPE +
+                        " )";
+
+        final String createAboTable =
+                "CREATE TABLE " + ABO_TABLE_NAME + " (" +
+                        ABO_COLUMN_ID + INTEGER_PK + COMMA_SEP +
+                        ABO_COLUMN_ABONAME + TEXT_TYPE +
+                        " )";
+
+        final String createSatisfactionTable =
+                "CREATE TABLE " + SATISFACTION_TABLE_NAME + " (" +
+                        SATISFACTION_COLUMN_ID + INTEGER_PK + COMMA_SEP +
+                        SATISFACTION_COLUMN_SATISFACTION + TEXT_TYPE +
+                        " )";
+
+        final String createAbortedTable =
+                "CREATE TABLE " + ABORTED_TABLE_NAME + " (" +
+                        ABORTED_COLUMN_ID + INTEGER_PK + COMMA_SEP +
+                        ABORTED_COLUMN_REASON + TEXT_TYPE +
+                        " )";
+
+        //Helper tables
+        db.execSQL(createAgeGroupTable);
+        db.execSQL(createGenderTable);
+        db.execSQL(createPatienceTable);
+        db.execSQL(createAboTable);
+        db.execSQL(createSatisfactionTable);
+        db.execSQL(createAbortedTable);
+
+        //Main tables
         db.execSQL(createUserTable);
         db.execSQL(createTestResultsTable);
     }
@@ -81,6 +164,25 @@ public class DbHelper extends SQLiteOpenHelper {
                 "DROP TABLE IF EXISTS " + USER_TABLE_NAME;
         final String deleteTestResultsTable =
                 "DROP TABLE IF EXISTS " + TEST_TABLE_NAME;
+        final String deleteAgeGroupTable =
+                "DROP TABLE IF EXISTS " + PATIENCE_TABLE_NAME;
+        final String deleteGenderTable =
+                "DROP TABLE IF EXISTS " + GENDER_TABLE_NAME;
+        final String deletePateinceTable =
+                "DROP TABLE IF EXISTS " + PATIENCE_TABLE_NAME;
+        final String deleteAboTable =
+                "DROP TABLE IF EXISTS " + ABO_TABLE_NAME;
+        final String deleteSatisfactionTable=
+                "DROP TABLE IF EXISTS " + SATISFACTION_TABLE_NAME;
+        final String deleteAbortedTable =
+                "DROP TABLE IF EXISTS " + ABORTED_TABLE_NAME;
+
+        db.execSQL(deleteAgeGroupTable);
+        db.execSQL(deleteGenderTable);
+        db.execSQL(deletePateinceTable);
+        db.execSQL(deleteAboTable);
+        db.execSQL(deleteSatisfactionTable);
+        db.execSQL(deleteAbortedTable);
         db.execSQL(deleteTestResultsTable);
         db.execSQL(deleteUserTable);
         onCreate(db);
