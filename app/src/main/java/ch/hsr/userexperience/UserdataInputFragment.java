@@ -119,13 +119,13 @@ public class UserdataInputFragment extends Fragment {
     private void storeValueWohnort() {
         switch (RGWohnort.getCheckedRadioButtonId()){
             case R.id.userdataInputRBtnStadt:
-                fragmentController.storeValue(fragmentController.WOHNORT, 0);
+                fragmentController.storeValue(FragmentController.WOHNORT, 0);
                 break;
             case R.id.userdataInputRBtnAgg:
-                fragmentController.storeValue(fragmentController.WOHNORT, 1);
+                fragmentController.storeValue(FragmentController.WOHNORT, 1);
                 break;
             case R.id.userdataInputRBtnAusser:
-                fragmentController.storeValue(fragmentController.WOHNORT, 2);
+                fragmentController.storeValue(FragmentController.WOHNORT, 2);
                 break;
             default:
                 Log.e("storeValueWohnort", "Fehler bei auslesen des Wohnortes");
@@ -135,13 +135,13 @@ public class UserdataInputFragment extends Fragment {
     private void storeValueGeduld() {
         switch(RGGeduld.getCheckedRadioButtonId()){
             case R.id.userdataInputRBtnGed:
-                fragmentController.storeValue(fragmentController.GEDULD, 0);
+                fragmentController.storeValue(FragmentController.GEDULD, 0);
                 break;
             case R.id.userdataInputRBtnMitt:
-                fragmentController.storeValue(fragmentController.GEDULD, 1);
+                fragmentController.storeValue(FragmentController.GEDULD, 1);
                 break;
             case R.id.userdataInputRBtnUnged:
-                fragmentController.storeValue(fragmentController.GEDULD, 2);
+                fragmentController.storeValue(FragmentController.GEDULD, 2);
                 break;
             default:
                 Log.e("storeValueGeduld", "Fehler bei auslesen der Geduld");
@@ -151,10 +151,10 @@ public class UserdataInputFragment extends Fragment {
     private void storeValueGeschlecht() {
         switch(RGGeschlecht.getCheckedRadioButtonId()){
             case R.id.userdataInputRBtnM:
-                fragmentController.storeValue(fragmentController.GESCHLECHT, 0);
+                fragmentController.storeValue(FragmentController.GESCHLECHT, 0);
                 break;
             case R.id.userdataInputRBtnW:
-                fragmentController.storeValue(fragmentController.GESCHLECHT, 1);
+                fragmentController.storeValue(FragmentController.GESCHLECHT, 1);
                 break;
             default:
                 Log.e("storeValueGeschlecht", "Fehler bei auslesen des Geschlechtes");
@@ -164,19 +164,19 @@ public class UserdataInputFragment extends Fragment {
     private void storeValueAlter() {
         switch(spinnerAlter.getSelectedItemPosition()){
             case 1:
-                fragmentController.storeValue(fragmentController.ALTER, 0);
+                fragmentController.storeValue(FragmentController.ALTER, 0);
                 Log.e("StoreAlter", "0-15");
                 break;
             case 2:
-                fragmentController.storeValue(fragmentController.ALTER, 1);
+                fragmentController.storeValue(FragmentController.ALTER, 1);
                 Log.e("StoreAlter", "16-30");
                 break;
             case 3:
-                fragmentController.storeValue(fragmentController.ALTER, 2);
+                fragmentController.storeValue(FragmentController.ALTER, 2);
                 Log.e("StoreAlter", "31-45");
                 break;
             case 4:
-                fragmentController.storeValue(fragmentController.ALTER, 3);
+                fragmentController.storeValue(FragmentController.ALTER, 3);
                 Log.e("StoreAlter", "46-");
                 break;
             default:

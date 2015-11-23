@@ -8,4 +8,7 @@
     <item android:id="@+id/action_DBopen" android:title="Show DB"
         android:orderInCategory="100" app:showAsAction="never" />
 
+    <item android:id="@+id/action_DBreset" android:title="Reset DB"
+        android:orderInCategory="100" app:showAsAction="never" />
+
 </menu>

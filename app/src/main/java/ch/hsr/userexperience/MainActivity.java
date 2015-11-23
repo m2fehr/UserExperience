@@ -3,6 +3,7 @@ package ch.hsr.userexperience;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -16,6 +17,8 @@ public class MainActivity extends AppCompatActivity implements FragmentControlle
 
     private Fragment currentFragment;
     private String url; //temporary
+
+    private DbHelper dbHelper;
 
     private User currentUser;
     private TestResults currentTestResults;
@@ -34,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements FragmentControlle
     @Override
     protected void onStart() {
         super.onStart();
+        if(dbHelper == null)
+            dbHelper = new DbHelper(this);
         changeFragment(new InformationFragment());
     }
 
@@ -78,8 +83,13 @@ public class MainActivity extends AppCompatActivity implements FragmentControlle
             return true;
         }
         if (id == R.id.action_DBopen) {
-//            Intent dbmanager = new Intent(this, AndroidDatabaseManager.class);
-//            startActivity(dbmanager);
+            Intent dbmanager = new Intent(this, AndroidDatabaseManager.class);
+            startActivity(dbmanager);
+            return true;
+        }
+        if (id == R.id.action_DBreset) {
+            if(dbHelper != null)
+                dbHelper.renewDb();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -96,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements FragmentControlle
             currentTestResults = new TestResults();
         }
         else if (fragment instanceof TestSummaryFragment) {
-            //dbHelper.insertUserAndTests(currentUser, currentTestResults);
+            dbHelper.insertUserAndTests(currentUser, currentTestResults);
         }
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, fragment);

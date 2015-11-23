@@ -76,7 +76,7 @@ public class TestSelectionFragment extends Fragment {
             txtTestSelection.setError("Bitte wählen Sie ein Abo aus");
             return false;
         }else{
-            fragmentController.storeValue(fragmentController.ABO, testSpinner.getSelectedItem());
+            fragmentController.storeValue(FragmentController.ABO, testSpinner.getSelectedItem());
             return true;
         }
     }

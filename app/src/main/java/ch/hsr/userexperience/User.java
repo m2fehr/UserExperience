@@ -69,4 +69,17 @@ public class User {
     public void set_aborted(int _aborted) {
         this._aborted = _aborted;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "_age=" + _age +
+                ", _gender=" + _gender +
+                ", _location=" + _location +
+                ", _patience=" + _patience +
+                ", _abo=" + _abo +
+                ", _satisfaction=" + _satisfaction +
+                ", _aborted=" + _aborted +
+                '}';
+    }
 }

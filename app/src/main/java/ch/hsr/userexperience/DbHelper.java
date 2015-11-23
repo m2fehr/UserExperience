@@ -19,17 +19,18 @@ public class DbHelper extends SQLiteOpenHelper {
     //DB Erstellen
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "UserExperience.db";
+    public static final String TAG = "DbHelper";
 
     //Table user
     public static final String USER_TABLE_NAME = "users";
     public static final String USER_COLUMN_ID = "id";
-    public static final String USER_COLUMN_AGE = "age id";
-    public static final String USER_COLUMN_GENDER = "gender id";
+    public static final String USER_COLUMN_AGE = "age_id";
+    public static final String USER_COLUMN_GENDER = "gender_id";
     public static final String USER_COLUMN_LOCATION = "location";
-    public static final String USER_COLUMN_PATIENCE = "patience id";
-    public static final String USER_COLUMN_ABO = "abo id";
-    public static final String USER_COLUMN_SATISFACTION = "satisfaction id";
-    public static final String USER_COLUMN_ABORTED  = "aborted id";
+    public static final String USER_COLUMN_PATIENCE = "patience_id";
+    public static final String USER_COLUMN_ABO = "abo_id";
+    public static final String USER_COLUMN_SATISFACTION = "satisfaction_id";
+    public static final String USER_COLUMN_ABORTED  = "aborted_id";
 
     //Table Testresults
     public static final String TEST_TABLE_NAME = "tests";
@@ -37,11 +38,14 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String TEST_COLUMN_USERID = "userid";
     public static final String TEST_COLUMN_SITE = "site";
     public static final String TEST_COLUMN_PLT = "plt";
+    public static final String TEST_COLUMN_NOFELEMENTS = "elements";
+    public static final String TEST_COLUMN_NOFSERVERS = "servers";
+    public static final String TEST_COLUMN_FINISHED = "finished";
 
     //Table Age
     public static final String AGE_TABLE_NAME = "age";
     public static final String AGE_COLUMN_ID = "id";
-    public static final String AGE_COLUMN_GROUP = "group";
+    public static final String AGE_COLUMN_GROUP = "agegroup";
 
     //Table Gender
     public static final String GENDER_TABLE_NAME = "gender";
@@ -88,6 +92,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        Log.e(TAG, "onCreate");
         final String createUserTable =
             "CREATE TABLE " + USER_TABLE_NAME + " (" +
                 USER_COLUMN_ID + INTEGER_PK + COMMA_SEP +
@@ -105,7 +110,10 @@ public class DbHelper extends SQLiteOpenHelper {
                 TEST_COLUMN_ID + INTEGER_PK + COMMA_SEP +
                 TEST_COLUMN_USERID + INTEGER_REF + USER_TABLE_NAME + "(" + USER_COLUMN_ID + CLOSE_DELETE_CASCADE + COMMA_SEP +
                 TEST_COLUMN_SITE + TEXT_TYPE + COMMA_SEP +
-                TEST_COLUMN_PLT + INTEGER_TYPE +
+                TEST_COLUMN_PLT + INTEGER_TYPE + COMMA_SEP +
+                TEST_COLUMN_NOFELEMENTS + INTEGER_TYPE + COMMA_SEP +
+                TEST_COLUMN_NOFSERVERS + INTEGER_TYPE + COMMA_SEP +
+                TEST_COLUMN_FINISHED + INTEGER_TYPE +
                 " )";
 
         final String createAgeGroupTable =
@@ -164,6 +172,8 @@ public class DbHelper extends SQLiteOpenHelper {
         //Main tables
         db.execSQL(createUserTable);
         db.execSQL(createTestResultsTable);
+
+        insertHelperTable(db);
     }
 
     @Override
@@ -173,13 +183,14 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        Log.e(TAG, "onUpgrade");
         //For now, just drop old tables and make new ones
         final String deleteUserTable =
                 "DROP TABLE IF EXISTS " + USER_TABLE_NAME;
         final String deleteTestResultsTable =
                 "DROP TABLE IF EXISTS " + TEST_TABLE_NAME;
         final String deleteAgeGroupTable =
-                "DROP TABLE IF EXISTS " + PATIENCE_TABLE_NAME;
+                "DROP TABLE IF EXISTS " + AGE_TABLE_NAME;
         final String deleteGenderTable =
                 "DROP TABLE IF EXISTS " + GENDER_TABLE_NAME;
         final String deleteLocationTable =
@@ -193,6 +204,8 @@ public class DbHelper extends SQLiteOpenHelper {
         final String deleteAbortedTable =
                 "DROP TABLE IF EXISTS " + ABORTED_TABLE_NAME;
 
+        db.execSQL(deleteTestResultsTable);
+        db.execSQL(deleteUserTable);
         db.execSQL(deleteAgeGroupTable);
         db.execSQL(deleteGenderTable);
         db.execSQL(deleteLocationTable);
@@ -200,12 +213,11 @@ public class DbHelper extends SQLiteOpenHelper {
 //        db.execSQL(deleteAboTable);
         db.execSQL(deleteSatisfactionTable);
         db.execSQL(deleteAbortedTable);
-        db.execSQL(deleteTestResultsTable);
-        db.execSQL(deleteUserTable);
         onCreate(db);
     }
 
     public void insertHelperTable(SQLiteDatabase db){
+        Log.e(TAG, "insertHelperTable");
         insertAgeTable(db);
         insertGenderTable(db);
         insertLocationTable(db);
@@ -213,97 +225,111 @@ public class DbHelper extends SQLiteOpenHelper {
         insertSatisfactionTable(db);
         insertAbortedTable(db);
         //insertAboTable(db);
+        db.close();
+    }
+
+    public void renewDb() {
+        SQLiteDatabase db = getWritableDatabase();
+        onUpgrade(db, 1, 1);
     }
 
     public void insertAgeTable(SQLiteDatabase db){
         ContentValues values = new ContentValues();
         values.put(AGE_COLUMN_ID, 0);
         values.put(AGE_COLUMN_GROUP, "0 - 15");
+        db.insert(AGE_TABLE_NAME, null, values);
 
         values.put(AGE_COLUMN_ID, 1);
         values.put(AGE_COLUMN_GROUP, "16 - 30");
+        db.insert(AGE_TABLE_NAME, null, values);
 
         values.put(AGE_COLUMN_ID, 2);
         values.put(AGE_COLUMN_GROUP, "31 - 45");
+        db.insert(AGE_TABLE_NAME, null, values);
 
         values.put(AGE_COLUMN_ID, 3);
         values.put(AGE_COLUMN_GROUP, "46 -");
-
         db.insert(AGE_TABLE_NAME, null, values);
-        db.close();
+//        db.close();
     }
     public void insertGenderTable(SQLiteDatabase db){
         ContentValues values = new ContentValues();
         values.put(GENDER_COLUMN_ID, 0);
         values.put(GENDER_COLUMN_GENDER, "mänlich");
+        db.insert(GENDER_TABLE_NAME, null, values);
 
         values.put(GENDER_COLUMN_ID, 1);
         values.put(GENDER_COLUMN_GENDER, "weiblich");
-
         db.insert(GENDER_TABLE_NAME, null, values);
-        db.close();
+//        db.close();
     }
     public void insertLocationTable(SQLiteDatabase db){
         ContentValues values = new ContentValues();
         values.put(LOCATION_COLUMN_ID, 0);
         values.put(LOCATION_COLUMN_LOCATION, "Stadt");
+        db.insert(LOCATION_TABLE_NAME, null, values);
 
         values.put(LOCATION_COLUMN_ID, 1);
         values.put(LOCATION_COLUMN_LOCATION, "Agglomeration");
+        db.insert(LOCATION_TABLE_NAME, null, values);
 
         values.put(LOCATION_COLUMN_ID, 2);
         values.put(LOCATION_COLUMN_LOCATION, "ländlich");
-
         db.insert(LOCATION_TABLE_NAME, null, values);
-        db.close();
+//        db.close();
     }
     public void insertPatienceTable(SQLiteDatabase db){
         ContentValues values = new ContentValues();
         values.put(PATIENCE_COLUMN_ID, 0);
         values.put(PATIENCE_COLUMN_PATIENCE, "geduldig");
+        db.insert(PATIENCE_TABLE_NAME, null, values);
 
         values.put(PATIENCE_COLUMN_ID, 1);
         values.put(PATIENCE_COLUMN_PATIENCE, "mittel");
+        db.insert(PATIENCE_TABLE_NAME, null, values);
 
         values.put(PATIENCE_COLUMN_ID, 2);
         values.put(PATIENCE_COLUMN_PATIENCE, "ungeduldig");
-
         db.insert(PATIENCE_TABLE_NAME, null, values);
-        db.close();
+//        db.close();
     }
     public void insertSatisfactionTable(SQLiteDatabase db){
         ContentValues values = new ContentValues();
         values.put(SATISFACTION_COLUMN_ID, 0);
         values.put(SATISFACTION_COLUMN_SATISFACTION, "schnell");
+        db.insert(SATISFACTION_TABLE_NAME, null, values);
 
         values.put(SATISFACTION_COLUMN_ID, 1);
         values.put(SATISFACTION_COLUMN_SATISFACTION, "mittel");
+        db.insert(SATISFACTION_TABLE_NAME, null, values);
 
         values.put(SATISFACTION_COLUMN_ID, 2);
         values.put(SATISFACTION_COLUMN_SATISFACTION, "langsam");
+        db.insert(SATISFACTION_TABLE_NAME, null, values);
 
         values.put(SATISFACTION_COLUMN_ID, 3);
         values.put(SATISFACTION_COLUMN_SATISFACTION, "unbrauchbar");
-
         db.insert(SATISFACTION_TABLE_NAME, null, values);
-        db.close();
+//        db.close();
     }
     public void insertAbortedTable(SQLiteDatabase db){
         ContentValues values = new ContentValues();
         values.put(ABORTED_COLUMN_ID, 0);
         values.put(ABORTED_COLUMN_REASON, "keine Angabe");
+        db.insert(ABORTED_TABLE_NAME, null, values);
 
         values.put(ABORTED_COLUMN_ID, 1);
         values.put(ABORTED_COLUMN_REASON, "keine Lust mehr");
+        db.insert(ABORTED_TABLE_NAME, null, values);
 
         values.put(ABORTED_COLUMN_ID, 2);
         values.put(ABORTED_COLUMN_REASON, "unbrauchbar");
+        db.insert(ABORTED_TABLE_NAME, null, values);
 
         values.put(ABORTED_COLUMN_ID, 3);
         values.put(ABORTED_COLUMN_REASON, "um weitere Option zu testen");
-
         db.insert(ABORTED_TABLE_NAME, null, values);
-        db.close();
+//        db.close();
     }
 //    public void insertAboTable(SQLiteDatabase db){
 //        ContentValues values = new ContentValues();
@@ -315,7 +341,9 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
     public void insertUserAndTests(User user, TestResults results) {
+        Log.e(TAG, "insertUserAndTests");
         if(user != null && results != null) {
+            Log.e(TAG, user.toString());
             SQLiteDatabase db = getWritableDatabase();
 
             ContentValues values = new ContentValues();
@@ -323,20 +351,24 @@ public class DbHelper extends SQLiteOpenHelper {
             values.put(USER_COLUMN_GENDER, user.get_gender());
             values.put(USER_COLUMN_LOCATION, user.get_location());
             values.put(USER_COLUMN_PATIENCE, user.get_patience());
-            values.put(USER_COLUMN_ABO, user.get_abo());
+            values.put(USER_COLUMN_ABO, "Abo1"); //TODO: enter correct value
             values.put(USER_COLUMN_SATISFACTION, user.get_satisfaction());
             values.put(USER_COLUMN_ABORTED, user.get_aborted());
 
             // Insert the new row, returning the primary key value of the new row
             long userId = db.insert(USER_TABLE_NAME, null, values);
-
+            Log.e(TAG, "userID: " + userId);
             values = new ContentValues();
             for (TestEntry entry : results.getEntrys()) {
                 values.put(TEST_COLUMN_USERID, userId);
                 values.put(TEST_COLUMN_SITE, entry.getSite());
                 values.put(TEST_COLUMN_PLT, entry.getTime());
+                values.put(TEST_COLUMN_NOFELEMENTS, entry.getNofElements());
+                values.put(TEST_COLUMN_NOFSERVERS, entry.getNofServers());
+                values.put(TEST_COLUMN_FINISHED, 1); //TODO: enter correct value
+                db.insert(TEST_TABLE_NAME, null, values);
             }
-            db.insert(TEST_TABLE_NAME, null, values);
+//            db.insert(TEST_TABLE_NAME, null, values);
             db.close();
         }
     }
