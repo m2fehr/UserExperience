@@ -184,7 +184,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "DROP TABLE IF EXISTS " + GENDER_TABLE_NAME;
         final String deleteLocationTable =
                 "DROP TABLE IF EXISTS " + LOCATION_TABLE_NAME;
-        final String deletePateinceTable =
+        final String deletePatinceTable =
                 "DROP TABLE IF EXISTS " + PATIENCE_TABLE_NAME;
 //        final String deleteAboTable =
 //                "DROP TABLE IF EXISTS " + ABO_TABLE_NAME;
@@ -196,7 +196,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(deleteAgeGroupTable);
         db.execSQL(deleteGenderTable);
         db.execSQL(deleteLocationTable);
-        db.execSQL(deletePateinceTable);
+        db.execSQL(deletePatinceTable);
 //        db.execSQL(deleteAboTable);
         db.execSQL(deleteSatisfactionTable);
         db.execSQL(deleteAbortedTable);
@@ -205,9 +205,113 @@ public class DbHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void insertAgeGroups(){
-
+    public void insertHelperTable(SQLiteDatabase db){
+        insertAgeTable(db);
+        insertGenderTable(db);
+        insertLocationTable(db);
+        insertPatienceTable(db);
+        insertSatisfactionTable(db);
+        insertAbortedTable(db);
+        //insertAboTable(db);
     }
+
+    public void insertAgeTable(SQLiteDatabase db){
+        ContentValues values = new ContentValues();
+        values.put(AGE_COLUMN_ID, 0);
+        values.put(AGE_COLUMN_GROUP, "0 - 15");
+
+        values.put(AGE_COLUMN_ID, 1);
+        values.put(AGE_COLUMN_GROUP, "16 - 30");
+
+        values.put(AGE_COLUMN_ID, 2);
+        values.put(AGE_COLUMN_GROUP, "31 - 45");
+
+        values.put(AGE_COLUMN_ID, 3);
+        values.put(AGE_COLUMN_GROUP, "46 -");
+
+        db.insert(AGE_TABLE_NAME, null, values);
+        db.close();
+    }
+    public void insertGenderTable(SQLiteDatabase db){
+        ContentValues values = new ContentValues();
+        values.put(GENDER_COLUMN_ID, 0);
+        values.put(GENDER_COLUMN_GENDER, "mänlich");
+
+        values.put(GENDER_COLUMN_ID, 1);
+        values.put(GENDER_COLUMN_GENDER, "weiblich");
+
+        db.insert(GENDER_TABLE_NAME, null, values);
+        db.close();
+    }
+    public void insertLocationTable(SQLiteDatabase db){
+        ContentValues values = new ContentValues();
+        values.put(LOCATION_COLUMN_ID, 0);
+        values.put(LOCATION_COLUMN_LOCATION, "Stadt");
+
+        values.put(LOCATION_COLUMN_ID, 1);
+        values.put(LOCATION_COLUMN_LOCATION, "Agglomeration");
+
+        values.put(LOCATION_COLUMN_ID, 2);
+        values.put(LOCATION_COLUMN_LOCATION, "ländlich");
+
+        db.insert(LOCATION_TABLE_NAME, null, values);
+        db.close();
+    }
+    public void insertPatienceTable(SQLiteDatabase db){
+        ContentValues values = new ContentValues();
+        values.put(PATIENCE_COLUMN_ID, 0);
+        values.put(PATIENCE_COLUMN_PATIENCE, "geduldig");
+
+        values.put(PATIENCE_COLUMN_ID, 1);
+        values.put(PATIENCE_COLUMN_PATIENCE, "mittel");
+
+        values.put(PATIENCE_COLUMN_ID, 2);
+        values.put(PATIENCE_COLUMN_PATIENCE, "ungeduldig");
+
+        db.insert(PATIENCE_TABLE_NAME, null, values);
+        db.close();
+    }
+    public void insertSatisfactionTable(SQLiteDatabase db){
+        ContentValues values = new ContentValues();
+        values.put(SATISFACTION_COLUMN_ID, 0);
+        values.put(SATISFACTION_COLUMN_SATISFACTION, "schnell");
+
+        values.put(SATISFACTION_COLUMN_ID, 1);
+        values.put(SATISFACTION_COLUMN_SATISFACTION, "mittel");
+
+        values.put(SATISFACTION_COLUMN_ID, 2);
+        values.put(SATISFACTION_COLUMN_SATISFACTION, "langsam");
+
+        values.put(SATISFACTION_COLUMN_ID, 3);
+        values.put(SATISFACTION_COLUMN_SATISFACTION, "unbrauchbar");
+
+        db.insert(SATISFACTION_TABLE_NAME, null, values);
+        db.close();
+    }
+    public void insertAbortedTable(SQLiteDatabase db){
+        ContentValues values = new ContentValues();
+        values.put(ABORTED_COLUMN_ID, 0);
+        values.put(ABORTED_COLUMN_REASON, "keine Angabe");
+
+        values.put(ABORTED_COLUMN_ID, 1);
+        values.put(ABORTED_COLUMN_REASON, "keine Lust mehr");
+
+        values.put(ABORTED_COLUMN_ID, 2);
+        values.put(ABORTED_COLUMN_REASON, "unbrauchbar");
+
+        values.put(ABORTED_COLUMN_ID, 3);
+        values.put(ABORTED_COLUMN_REASON, "um weitere Option zu testen");
+
+        db.insert(ABORTED_TABLE_NAME, null, values);
+        db.close();
+    }
+//    public void insertAboTable(SQLiteDatabase db){
+//        ContentValues values = new ContentValues();
+//        values.put(ABO_COLUMN_ID, 0);
+//        values.put(ABO_COLUMN_ABONAME, "abo1");
+//        db.insert(AGE_TABLE_NAME, null, values);
+//        db.close();
+//    }
 
 
     public void insertUserAndTests(User user, TestResults results) {

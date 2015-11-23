@@ -125,7 +125,7 @@ public class UserdataInputFragment extends Fragment {
                 fragmentController.storeValue(fragmentController.WOHNORT, 1);
                 break;
             case R.id.userdataInputRBtnAusser:
-                fragmentController.storeValue(fragmentController.WOHNORT, 3);
+                fragmentController.storeValue(fragmentController.WOHNORT, 2);
                 break;
             default:
                 Log.e("storeValueWohnort", "Fehler bei auslesen des Wohnortes");
