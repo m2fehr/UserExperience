@@ -100,6 +100,15 @@ public class SurfFragment extends Fragment {
         fragmentController = null;
     }
 
+    public void aboutToChangeFragment() {
+        Log.e(TAG, "aboutToChangeFragment called");
+        if (currentTestEntry != null && fragmentController != null) {
+            fragmentController.storeValue(FragmentController.TESTENTRY, currentTestEntry);
+            Log.e(TAG, "Results stored: " + currentTestEntry.toString());
+            currentTestEntry = null;
+        }
+    }
+
     public void webViewGoBack() {
         webView.goBack();
     }

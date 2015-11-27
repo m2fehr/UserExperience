@@ -24,7 +24,7 @@ public class PageSelectionFragment extends Fragment implements View.OnClickListe
     private FragmentController fragmentController;
     private ImageButton zwanzigMinButton;
     private ImageButton blickButton;
-    private ImageButton tagiButton;
+//    private ImageButton tagiButton;
     private ImageButton nzzButton;
 
 
@@ -50,8 +50,8 @@ public class PageSelectionFragment extends Fragment implements View.OnClickListe
         zwanzigMinButton.setOnClickListener(this);
         blickButton = (ImageButton) activity.findViewById(R.id.blickBtn);
         blickButton.setOnClickListener(this);
-        tagiButton = (ImageButton) activity.findViewById(R.id.tagiBtn);
-        tagiButton.setOnClickListener(this);
+//        tagiButton = (ImageButton) activity.findViewById(R.id.tagiBtn);
+//        tagiButton.setOnClickListener(this);
         nzzButton = (ImageButton) activity.findViewById(R.id.nzzBtn);
         nzzButton.setOnClickListener(this);
     }
@@ -83,9 +83,9 @@ public class PageSelectionFragment extends Fragment implements View.OnClickListe
             case R.id.blickBtn: url = "http://blick.ch";
                 Log.e("PageSel", "Blick Button clicked");
                 break;
-            case R.id.tagiBtn: url = "http://mobile2.tagesanzeiger.ch";
-                Log.e("PageSel", "Tagi Button clicked");
-                break;
+//            case R.id.tagiBtn: url = "http://mobile2.tagesanzeiger.ch";
+//                Log.e("PageSel", "Tagi Button clicked");
+//                break;
             case R.id.nzzBtn: url = "http://nzz.ch";
                 Log.e("PageSel", "NZZ Button clicked");
                 break;

@@ -102,7 +102,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Weiter"
+        android:text="Test abschliessen"
         android:layout_below="@+id/RGAbbruchGrund"
         android:layout_marginTop="15dp"
         android:id="@+id/feedbackFragmentWeiterBtn"/>

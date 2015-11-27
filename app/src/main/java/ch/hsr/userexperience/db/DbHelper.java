@@ -229,7 +229,7 @@ public class DbHelper extends SQLiteOpenHelper {
         insertSatisfactionTable(db);
         insertAbortedTable(db);
         //insertAboTable(db);
-        db.close();
+        //db.close();
     }
 
     public void renewDb() {

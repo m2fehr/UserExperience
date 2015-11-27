@@ -54,7 +54,8 @@ public class FeedbackFragment extends Fragment {
             public void onClick(View v) {
                 if (fragmentController != null) {
                     if(storeValues()){
-                        fragmentController.changeFragment(new TestSummaryFragment());
+                        fragmentController.storeToDb();
+                        fragmentController.changeFragment(new InformationFragment());
                     }
                 }
             }

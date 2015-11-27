@@ -133,23 +133,24 @@ public class MainActivity extends AppCompatActivity implements FragmentControlle
     }
 
     @Override
-    public void changeFragment(Fragment fragment) {
+    public void changeFragment(Fragment nextFragment) {
         Log.e(TAG, "change Fragment");
-        currentFragment = fragment;
         FragmentManager fm = getFragmentManager();
-        if (fragment instanceof InformationFragment) {
+        if (nextFragment instanceof InformationFragment) {
             fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
             currentUser = new User();
             currentTestResults = new TestResults();
         }
-        else if (fragment instanceof TestSummaryFragment) {
-            dbHelper.insertUserAndTests(currentUser, currentTestResults);
+        if (nextFragment instanceof FeedbackFragment && currentFragment instanceof SurfFragment) {
+            SurfFragment frag = (SurfFragment) currentFragment;
+            frag.aboutToChangeFragment();
         }
         invalidateOptionsMenu();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.replace(R.id.fragment_container, nextFragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+        currentFragment = nextFragment;
     }
 
     @Override
@@ -192,6 +193,11 @@ public class MainActivity extends AppCompatActivity implements FragmentControlle
             case FragmentController.URL: return url;
         }
         return null;
+    }
+
+    @Override
+    public void storeToDb() {
+        dbHelper.insertUserAndTests(currentUser, currentTestResults);
     }
 
     private void exportDB(){

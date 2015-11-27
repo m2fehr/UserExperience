@@ -30,5 +30,6 @@ public interface FragmentController {
     public void changeFragment(Fragment fragment);
     public void storeValue(String key, Object value);
     public void storeValue(String key, int value);
+    public void storeToDb();
     public Object getValue(String key);
 }
