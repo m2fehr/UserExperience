@@ -1,4 +1,4 @@
-package ch.hsr.userexperience;
+package ch.hsr.userexperience.ui;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import ch.hsr.userexperience.utils.FragmentController;
+import ch.hsr.userexperience.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -15,14 +18,14 @@ import android.widget.Button;
  * {@link FragmentController} interface
  * to handle interaction events.
  */
-public class InformationFragment extends Fragment {
+public class TestSummaryFragment extends Fragment {
 
-    public final static String TAG = "InformationFragment";
+    public final static String TAG = "TestSummaryFragment";
 
     private FragmentController fragmentController;
     private Button weiterButton;
 
-    public InformationFragment() {
+    public TestSummaryFragment() {
         // Required empty public constructor
     }
 
@@ -31,7 +34,7 @@ public class InformationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_information, container, false);
+        return inflater.inflate(R.layout.fragment_test_summary, container, false);
     }
 
     @Override
@@ -40,16 +43,15 @@ public class InformationFragment extends Fragment {
 
         Activity activity = getActivity();
 
-        weiterButton = (Button) activity.findViewById(R.id.informationFragmentWeiterBtn);
+        weiterButton = (Button) activity.findViewById(R.id.summaryFragmentWeiterBtn);
         weiterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (fragmentController != null) {
-                    fragmentController.changeFragment(new UserdataInputFragment());
+                    fragmentController.changeFragment(new InformationFragment());
                 }
             }
         });
-
     }
 
     @Override

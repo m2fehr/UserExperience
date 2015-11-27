@@ -1,4 +1,4 @@
-package ch.hsr.userexperience;
+package ch.hsr.userexperience.ui;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -8,6 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+
+import ch.hsr.userexperience.utils.FragmentController;
+import ch.hsr.userexperience.R;
 
 
 /**

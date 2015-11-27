@@ -1,4 +1,4 @@
-package ch.hsr.userexperience;
+package ch.hsr.userexperience.utils;
 
 import android.app.Fragment;
 

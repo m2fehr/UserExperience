@@ -1,4 +1,4 @@
-package ch.hsr.userexperience;
+package ch.hsr.userexperience.ui;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -12,6 +12,9 @@ import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import ch.hsr.userexperience.utils.FragmentController;
+import ch.hsr.userexperience.R;
 
 
 /**

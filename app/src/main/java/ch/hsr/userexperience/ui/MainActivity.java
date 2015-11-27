@@ -1,15 +1,33 @@
-package ch.hsr.userexperience;
+package ch.hsr.userexperience.ui;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.channels.FileChannel;
+
+import ch.hsr.userexperience.R;
+import ch.hsr.userexperience.db.AndroidDatabaseManager;
+import ch.hsr.userexperience.db.DbHelper;
+import ch.hsr.userexperience.utils.FragmentController;
+import ch.hsr.userexperience.utils.TestEntry;
+import ch.hsr.userexperience.utils.TestResults;
+import ch.hsr.userexperience.utils.User;
 
 public class MainActivity extends AppCompatActivity implements FragmentController {
 
@@ -64,6 +82,24 @@ public class MainActivity extends AppCompatActivity implements FragmentControlle
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        if (currentFragment != null) {
+            if (currentFragment instanceof InformationFragment) {
+                MenuItem item = menu.findItem(R.id.action_cancel);
+                item.setVisible(false);
+                item = menu.findItem(R.id.action_DBopen);
+                item.setVisible(true);
+                item = menu.findItem(R.id.action_DBexport);
+                item.setVisible(true);
+
+            } else  {
+                MenuItem item = menu.findItem(R.id.action_cancel);
+                item.setVisible(true);
+                item = menu.findItem(R.id.action_DBopen);
+                item.setVisible(false);
+                item = menu.findItem(R.id.action_DBexport);
+                item.setVisible(false);
+            }
+        }
         return true;
     }
 
@@ -87,9 +123,10 @@ public class MainActivity extends AppCompatActivity implements FragmentControlle
             startActivity(dbmanager);
             return true;
         }
-        if (id == R.id.action_DBreset) {
+        if (id == R.id.action_DBexport) {
             if(dbHelper != null)
-                dbHelper.renewDb();
+                exportDB();
+                //dbHelper.renewDb();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -108,6 +145,7 @@ public class MainActivity extends AppCompatActivity implements FragmentControlle
         else if (fragment instanceof TestSummaryFragment) {
             dbHelper.insertUserAndTests(currentUser, currentTestResults);
         }
+        invalidateOptionsMenu();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.addToBackStack(null);
@@ -130,7 +168,6 @@ public class MainActivity extends AppCompatActivity implements FragmentControlle
     public void storeValue(String key, int value) {
         if (currentUser == null)
             return;
-        //ToDo: Zuerst richtige Werte übergeben!
         switch (key) {
             case FragmentController.ALTER: currentUser.set_age(value);
                 break;
@@ -155,6 +192,40 @@ public class MainActivity extends AppCompatActivity implements FragmentControlle
             case FragmentController.URL: return url;
         }
         return null;
+    }
+
+    private void exportDB(){
+        //File sd = Environment.getExternalStorageDirectory();
+        File sd = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+        File data = Environment.getDataDirectory();
+        FileChannel source=null;
+        FileChannel destination=null;
+        String currentDBPath = "/data/"+ "ch.hsr.userexperience" +"/databases/" + DbHelper.DATABASE_NAME;
+        String backupDBPath = DbHelper.DATABASE_NAME;
+        File currentDB = new File(data, currentDBPath);
+        File backupDB = new File(sd, backupDBPath);
+        try {
+            source = new FileInputStream(currentDB).getChannel();
+            destination = new FileOutputStream(backupDB).getChannel();
+            destination.transferFrom(source, 0, source.size());
+            source.close();
+            destination.close();
+            Toast.makeText(this, "DB Exported!", Toast.LENGTH_SHORT).show();
+
+            // Tell the media scanner about the new file so that it is
+            // immediately available to the user.
+            MediaScannerConnection.scanFile(this,
+                    new String[]{backupDB.toString()}, null,
+                    new MediaScannerConnection.OnScanCompletedListener() {
+                        public void onScanCompleted(String path, Uri uri) {
+                            Log.i("ExternalStorage", "Scanned " + path + ":");
+                            Log.i("ExternalStorage", "-> uri=" + uri);
+                        }
+                    });
+        } catch(IOException e) {
+            Toast.makeText(getBaseContext(), "Failed to export DB", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
     }
 
 }

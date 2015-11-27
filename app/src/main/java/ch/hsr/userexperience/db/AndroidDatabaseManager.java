@@ -1,4 +1,4 @@
-package ch.hsr.userexperience;//add your package name here example: package com.example.dbm;
+package ch.hsr.userexperience.db;//add your package name here example: package com.example.dbm;
 
 //all required import files
 import java.util.ArrayList;

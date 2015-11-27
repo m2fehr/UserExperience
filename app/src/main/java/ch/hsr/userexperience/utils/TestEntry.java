@@ -1,4 +1,4 @@
-package ch.hsr.userexperience;
+package ch.hsr.userexperience.utils;
 
 /**
  * Created by Matthias on 13.11.15.

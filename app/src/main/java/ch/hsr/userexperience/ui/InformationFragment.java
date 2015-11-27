@@ -1,4 +1,4 @@
-package ch.hsr.userexperience;
+package ch.hsr.userexperience.ui;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import ch.hsr.userexperience.utils.FragmentController;
+import ch.hsr.userexperience.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -15,14 +18,14 @@ import android.widget.Button;
  * {@link FragmentController} interface
  * to handle interaction events.
  */
-public class TestSummaryFragment extends Fragment {
+public class InformationFragment extends Fragment {
 
-    public final static String TAG = "TestSummaryFragment";
+    public final static String TAG = "InformationFragment";
 
     private FragmentController fragmentController;
     private Button weiterButton;
 
-    public TestSummaryFragment() {
+    public InformationFragment() {
         // Required empty public constructor
     }
 
@@ -31,7 +34,7 @@ public class TestSummaryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_test_summary, container, false);
+        return inflater.inflate(R.layout.fragment_information, container, false);
     }
 
     @Override
@@ -40,15 +43,16 @@ public class TestSummaryFragment extends Fragment {
 
         Activity activity = getActivity();
 
-        weiterButton = (Button) activity.findViewById(R.id.summaryFragmentWeiterBtn);
+        weiterButton = (Button) activity.findViewById(R.id.informationFragmentWeiterBtn);
         weiterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (fragmentController != null) {
-                    fragmentController.changeFragment(new InformationFragment());
+                    fragmentController.changeFragment(new UserdataInputFragment());
                 }
             }
         });
+
     }
 
     @Override

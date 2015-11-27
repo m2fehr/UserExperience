@@ -1,4 +1,4 @@
-package ch.hsr.userexperience;
+package ch.hsr.userexperience.db;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -10,6 +10,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.ArrayList;
+
+import ch.hsr.userexperience.utils.TestEntry;
+import ch.hsr.userexperience.utils.TestResults;
+import ch.hsr.userexperience.utils.User;
 
 /**
  * Created by Matthias on 13.11.15.
