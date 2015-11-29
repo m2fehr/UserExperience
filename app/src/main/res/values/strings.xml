@@ -12,8 +12,11 @@
     </string-array>
 
     <string-array name="testSelection">
-        <item>Bitte Auswählen</item>
-        <item>Abo1</item>
+        <item>Infinity XS</item>
+        <item>Infinity S</item>
+        <item>Infinity M</item>
+        <item>Infinity L</item>
+        <item>Infinity XL</item>
     </string-array>
 
 <!-- TODO: Remove or change this placeholder text -->
