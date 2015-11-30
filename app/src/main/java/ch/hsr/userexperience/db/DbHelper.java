@@ -355,7 +355,7 @@ public class DbHelper extends SQLiteOpenHelper {
             values.put(USER_COLUMN_GENDER, user.get_gender());
             values.put(USER_COLUMN_LOCATION, user.get_location());
             values.put(USER_COLUMN_PATIENCE, user.get_patience());
-            values.put(USER_COLUMN_ABO, "Abo1"); //TODO: enter correct value
+            values.put(USER_COLUMN_ABO, (String) user.get_abo()); //TODO: enter correct value
             values.put(USER_COLUMN_SATISFACTION, user.get_satisfaction());
             values.put(USER_COLUMN_ABORTED, user.get_aborted());
 

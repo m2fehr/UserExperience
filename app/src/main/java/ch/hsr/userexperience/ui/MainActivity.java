@@ -162,6 +162,8 @@ public class MainActivity extends AppCompatActivity implements FragmentControlle
                 break;
             case FragmentController.TESTENTRY: currentTestResults.addEntry((TestEntry) value);
                 break;
+            case FragmentController.ABO: currentUser.set_abo(value);
+                break;
         }
     }
 
@@ -177,8 +179,6 @@ public class MainActivity extends AppCompatActivity implements FragmentControlle
             case FragmentController.GESCHLECHT: currentUser.set_gender(value);
                 break;
             case FragmentController.WOHNORT: currentUser.set_location(value);
-                break;
-            case FragmentController.ABO: currentUser.set_abo(value);
                 break;
             case FragmentController.RGABBRUCH: currentUser.set_aborted(value);
                 break;

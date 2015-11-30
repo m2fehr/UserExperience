@@ -10,7 +10,7 @@ public class User {
     private int _gender;
     private int _location;
     private int _patience;
-    private int _abo;
+    private Object _abo;
     private int _satisfaction;
     private int _aborted;
 
@@ -46,11 +46,11 @@ public class User {
         this._patience = _patience;
     }
 
-    public int get_abo() {
+    public Object get_abo() {
         return _abo;
     }
 
-    public void set_abo(int _abo) {
+    public void set_abo(Object _abo) {
         this._abo = _abo;
     }
 
