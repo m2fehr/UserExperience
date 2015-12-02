@@ -11,9 +11,9 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-import ch.hsr.userexperience.utils.TestEntry;
-import ch.hsr.userexperience.utils.TestResults;
-import ch.hsr.userexperience.utils.User;
+import ch.hsr.userexperience.model.TestEntry;
+import ch.hsr.userexperience.model.TestResults;
+import ch.hsr.userexperience.model.User;
 
 /**
  * Created by Matthias on 13.11.15.

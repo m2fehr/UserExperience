@@ -28,7 +28,7 @@ public class UserdataInputFragment extends Fragment {
     public final static String TAG = "UserdataInputFragment";
 
     private FragmentController fragmentController;
-    private Button weiterButton;
+    private Button nextButton;
     private TextView txtAlter;
     private TextView txtGeschlecht;
     private TextView txtWohnort;
@@ -57,8 +57,8 @@ public class UserdataInputFragment extends Fragment {
 
         Activity activity = getActivity();
 
-        weiterButton = (Button) activity.findViewById(R.id.userdataInputBtnWeiter);
-        weiterButton.setOnClickListener(new View.OnClickListener() {
+        nextButton = (Button) activity.findViewById(R.id.userdataInputBtnWeiter);
+        nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (fragmentController != null) {

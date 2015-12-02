@@ -23,7 +23,7 @@ public class InformationFragment extends Fragment {
     public final static String TAG = "InformationFragment";
 
     private FragmentController fragmentController;
-    private Button weiterButton;
+    private Button nextButton;
 
     public InformationFragment() {
         // Required empty public constructor
@@ -43,8 +43,8 @@ public class InformationFragment extends Fragment {
 
         Activity activity = getActivity();
 
-        weiterButton = (Button) activity.findViewById(R.id.informationFragmentWeiterBtn);
-        weiterButton.setOnClickListener(new View.OnClickListener() {
+        nextButton = (Button) activity.findViewById(R.id.informationFragmentWeiterBtn);
+        nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (fragmentController != null) {

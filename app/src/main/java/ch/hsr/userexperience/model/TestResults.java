@@ -1,4 +1,4 @@
-package ch.hsr.userexperience.utils;
+package ch.hsr.userexperience.model;
 
 import java.util.ArrayList;
 import java.util.Collections;

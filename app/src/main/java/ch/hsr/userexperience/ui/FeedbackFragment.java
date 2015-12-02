@@ -25,7 +25,7 @@ public class FeedbackFragment extends Fragment {
     public final static String TAG = "FeedbackFragment";
 
     private FragmentController fragmentController;
-    private Button weiterButton;
+    private Button nextButton;
     private RadioGroup rg1;
     private RadioGroup rg2;
     private TextView tv1;
@@ -48,8 +48,8 @@ public class FeedbackFragment extends Fragment {
 
         Activity activity = getActivity();
 
-        weiterButton = (Button) activity.findViewById(R.id.feedbackFragmentWeiterBtn);
-        weiterButton.setOnClickListener(new View.OnClickListener() {
+        nextButton = (Button) activity.findViewById(R.id.feedbackFragmentWeiterBtn);
+        nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (fragmentController != null) {

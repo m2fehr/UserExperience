@@ -26,7 +26,7 @@ public class TestSelectionFragment extends Fragment {
     public final static String TAG = "TestSelectionFragment";
 
     private FragmentController fragmentController;
-    private Button weiterButton;
+    private Button nextButton;
     private Spinner testSpinner;
     private TextView txtTestSelection;
 
@@ -48,8 +48,8 @@ public class TestSelectionFragment extends Fragment {
 
         Activity activity = getActivity();
 
-        weiterButton = (Button) activity.findViewById(R.id.TestSelectionBtnWeiter);
-        weiterButton.setOnClickListener(new View.OnClickListener() {
+        nextButton = (Button) activity.findViewById(R.id.TestSelectionBtnWeiter);
+        nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (fragmentController != null) {

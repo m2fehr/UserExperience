@@ -25,9 +25,9 @@ import ch.hsr.userexperience.R;
 import ch.hsr.userexperience.db.AndroidDatabaseManager;
 import ch.hsr.userexperience.db.DbHelper;
 import ch.hsr.userexperience.utils.FragmentController;
-import ch.hsr.userexperience.utils.TestEntry;
-import ch.hsr.userexperience.utils.TestResults;
-import ch.hsr.userexperience.utils.User;
+import ch.hsr.userexperience.model.TestEntry;
+import ch.hsr.userexperience.model.TestResults;
+import ch.hsr.userexperience.model.User;
 
 public class MainActivity extends AppCompatActivity implements FragmentController {
 
@@ -144,6 +144,7 @@ public class MainActivity extends AppCompatActivity implements FragmentControlle
         if (nextFragment instanceof FeedbackFragment && currentFragment instanceof SurfFragment) {
             SurfFragment frag = (SurfFragment) currentFragment;
             frag.aboutToChangeFragment();
+            fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         }
         invalidateOptionsMenu();
         FragmentTransaction fragmentTransaction = fm.beginTransaction();

@@ -23,7 +23,7 @@ public class TestSummaryFragment extends Fragment {
     public final static String TAG = "TestSummaryFragment";
 
     private FragmentController fragmentController;
-    private Button weiterButton;
+    private Button nextButton;
 
     public TestSummaryFragment() {
         // Required empty public constructor
@@ -43,8 +43,8 @@ public class TestSummaryFragment extends Fragment {
 
         Activity activity = getActivity();
 
-        weiterButton = (Button) activity.findViewById(R.id.summaryFragmentWeiterBtn);
-        weiterButton.setOnClickListener(new View.OnClickListener() {
+        nextButton = (Button) activity.findViewById(R.id.summaryFragmentWeiterBtn);
+        nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (fragmentController != null) {

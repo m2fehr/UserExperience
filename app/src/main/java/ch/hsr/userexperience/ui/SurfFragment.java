@@ -10,14 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.TreeSet;
 
-import ch.hsr.userexperience.utils.FragmentController;
 import ch.hsr.userexperience.R;
-import ch.hsr.userexperience.utils.TestEntry;
+import ch.hsr.userexperience.model.TestEntry;
+import ch.hsr.userexperience.utils.FragmentController;
 
 
 /**
@@ -32,7 +31,6 @@ public class SurfFragment extends Fragment {
 
     private FragmentController fragmentController;
     private WebView webView;
-    private Button weiterButton;
 
     private long loadingStartTime;
     private long loadingStopTime;
@@ -64,16 +62,6 @@ public class SurfFragment extends Fragment {
 
         ressourceUrlList = new ArrayList<>();
         hostUrlSet = new TreeSet<>();
-
-//        weiterButton = (Button) activity.findViewById(R.id.surfFragmentWeiterBtn);
-//        weiterButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (fragmentController != null) {
-//                    fragmentController.changeFragment(new FeedbackFragment());
-//                }
-//            }
-//        });
 
         webView = (WebView) activity.findViewById(R.id.webView);
         webView.setWebViewClient(wvc);
