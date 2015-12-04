@@ -2,13 +2,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context=".ui.MainActivity">
 
-    <item android:id="@+id/action_cancel" android:title="Test abbrechen"
+    <item android:id="@+id/action_cancel" android:title="@string/cancel_test"
         android:orderInCategory="100" app:showAsAction="never" />
 
-    <item android:id="@+id/action_DBopen" android:title="Show DB"
+    <item android:id="@+id/action_DBopen" android:title="@string/shot_db"
         android:orderInCategory="100" app:showAsAction="never" />
 
-    <item android:id="@+id/action_DBexport" android:title="Export DB"
+    <item android:id="@+id/action_DBexport" android:title="@string/export_db"
         android:orderInCategory="100" app:showAsAction="never" />
 
 </menu>

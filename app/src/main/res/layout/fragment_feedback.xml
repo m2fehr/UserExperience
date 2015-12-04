@@ -6,7 +6,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Surfgeschwindigkeit"
+        android:text="@string/surf_speed"
         android:id="@+id/txtSurfgeschwindigkeit"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
@@ -25,28 +25,28 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="schnell"
+            android:text="@string/surf_speed_fast"
             android:id="@+id/RBGschnell"
             android:checked="false" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="mittel"
+            android:text="@string/surf_speed_middle"
             android:id="@+id/RBGmittel"
             android:checked="false" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="langsam"
+            android:text="@string/surf_speed_slow"
             android:id="@+id/RBGlangsam"
             android:checked="false" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="unbrauchbar"
+            android:text="@string/surf_speed_useless"
             android:id="@+id/RBGunbrauchbar"
             android:checked="false" />
     </RadioGroup>
@@ -55,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Warum wurde der Test abgebrochen?"
+        android:text="@string/why_was_test_canceled"
         android:id="@+id/txtAbbruchGrund"
         android:layout_below="@+id/RGSurfgeschw"
         android:layout_alignStart="@+id/RGSurfgeschw"
@@ -73,28 +73,28 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="keine Angabe"
+            android:text="@string/test_cancelled_no_reason"
             android:id="@+id/RBAkeineAngabe"
             android:checked="false" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="keine Lust mehr"
+            android:text="@string/test_cancelled_boring"
             android:id="@+id/RBAkeineLust"
             android:checked="false" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="unbrauchbar"
+            android:text="@string/test_cancelled_useless"
             android:id="@+id/RBAunbrauchbar"
             android:checked="false" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="um andere Option zu testen"
+            android:text="@string/test_cancelled_test_other_option"
             android:id="@+id/RBAweitereTests"
             android:checked="false" />
     </RadioGroup>
@@ -102,7 +102,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Test abschliessen"
+        android:text="@string/finish_test"
         android:layout_below="@+id/RGAbbruchGrund"
         android:layout_marginTop="15dp"
         android:id="@+id/feedbackFragmentWeiterBtn"/>

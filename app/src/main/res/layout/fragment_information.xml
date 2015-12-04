@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:text = "1. Eingabe der Nutzerdaten. \n2. Eingeben der Testeinstellungen \n3. Auswählen der Homepage und starten des Testes. \n4. Auf der Homepage surfen bis der test beendet (5 min). \n5. Beurteilung zur Qualität des Surfens geben. \n6. Test abschliessen \n7. Neuer Test mit einer anderer Homepage starten."
+        android:text = "@string/information_text"
         android:textColor="#000000"
         android:id="@+id/InformationText" />
 
@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/informationFragmentWeiterBtn"
-        android:text="Weiter"
+        android:text="@string/next"
         android:textSize="20sp" />
 
 </LinearLayout>

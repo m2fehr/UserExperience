@@ -76,7 +76,7 @@ public class TestSelectionFragment extends Fragment {
         boolean testSelection1 = testSpinner.getSelectedItem() == null;
 
         if(testSelection || testSelection1){
-            txtTestSelection.setError("Bitte wählen Sie ein Abo aus");
+            txtTestSelection.setError(getResources().getString(R.string.no_option_choosed_error));
             return false;
         }else{
             fragmentController.storeValue(FragmentController.ABO, testSpinner.getSelectedItem());

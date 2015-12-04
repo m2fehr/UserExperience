@@ -72,10 +72,10 @@ public class FeedbackFragment extends Fragment {
         int r2 = rg2.getCheckedRadioButtonId();
         if(r1 == -1 || r2 == -1){
             if(r1 == -1){
-                tv1.setError("Bitte wählen Sie eine Option aus");
+                tv1.setError(getActivity().getString(R.string.no_option_choosed_error));
             }
             if(r2 == -1){
-                tv2.setError("Bitte wählen Sie eine Option aus");
+                tv2.setError(getActivity().getString(R.string.no_option_choosed_error));
             }
             return false;
         }else{

@@ -86,7 +86,7 @@ public class UserdataInputFragment extends Fragment {
 
     //Speichert und Überprüft die Testdaten
     private boolean storeValues() {
-        boolean alter = spinnerAlter.getItemAtPosition(spinnerAlter.getSelectedItemPosition()).toString().equals("Bitte Auswählen");
+        boolean alter = spinnerAlter.getItemAtPosition(spinnerAlter.getSelectedItemPosition()).toString().equals(getResources().getStringArray(R.array.userdataInputSpinnerAlter)[0]);
         boolean alter1 = spinnerAlter.getSelectedItem() == null;
         boolean geschlecht = RGGeschlecht.getCheckedRadioButtonId() == -1;
         boolean geduld = RGGeduld.getCheckedRadioButtonId() == -1;
@@ -94,16 +94,16 @@ public class UserdataInputFragment extends Fragment {
 
         if(alter || alter1 || geschlecht || geduld || wohnort){
             if(alter || alter1){
-                txtAlter.setError("Bitte wählen Sie Ihre Alterskategorie aus.");
+                txtAlter.setError(getResources().getString(R.string.age_categorie_selection_error));
             }
             if(geschlecht){
-                txtGeschlecht.setError("Bitte wählen Sie Ihr Geschlecht aus.");
+                txtGeschlecht.setError(getResources().getString(R.string.gender_selection_error));
             }
             if(geduld){
-                txtGeduld.setError("Bitte stufen Sie Ihre Geduld ein.");
+                txtGeduld.setError(getResources().getString(R.string.patient__selection_error));
             }
             if(wohnort){
-                txtWohnort.setError("Bitte wählen Sie die auf Ihren Wohnort zutreffende Beschreibung aus.");
+                txtWohnort.setError(getResources().getString(R.string.location_selection_error));
             }
             return false;
         }else{

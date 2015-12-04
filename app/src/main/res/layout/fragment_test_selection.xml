@@ -1,21 +1,17 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.TestSelectionFragment">
+    tools:context=".ui.TestSelectionFragment"
+    android:layout_gravity="start|top"
+    android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
 
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="left|top">
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Wählen Sie das gewünschte Abo aus:"
+            android:text="@string/choose_your_abo"
             android:id="@+id/TestSelectionText1"
             android:textSize="25sp"
             android:textColor="#000000" />
@@ -147,10 +143,8 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Weiter"
+            android:text="@string/next"
             android:id="@+id/TestSelectionBtnWeiter"
-            android:textSize="20sp"
-            android:layout_column="11" />
+            android:textSize="20sp" />
 
-    </LinearLayout>
-</FrameLayout>
+</LinearLayout>

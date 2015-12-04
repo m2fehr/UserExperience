@@ -1,20 +1,15 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.UserdataInputFragment">
+    tools:context=".ui.UserdataInputFragment"
+    android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
-
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Bitte wählen Sie Ihre Altersgruppe aus"
+            android:text="@string/choose_age_group"
             android:id="@+id/userdataInputTxtAlter"
             android:textSize="25sp"
             android:textColor="#000000" />
@@ -28,7 +23,7 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Bitte wählen Sie Ihr Geschlecht aus"
+            android:text="@string/choose_gender"
             android:id="@+id/userdataInputTxtGeschlecht"
             android:textColor="#000000"
             android:textSize="25sp" />
@@ -42,7 +37,7 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="männlich"
+                android:text="@string/male"
                 android:id="@+id/userdataInputRBtnM"
                 android:textColor="#000000"
                 android:textSize="20sp"
@@ -51,7 +46,7 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="weiblich"
+                android:text="@string/female"
                 android:id="@+id/userdataInputRBtnW"
                 android:textColor="#000000"
                 android:textSize="20sp"
@@ -71,7 +66,7 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Wie schätzen Sie Ihren Wohnort ein"
+            android:text="@string/choose_your_location"
             android:id="@+id/userdataInputTxtWohnort"
             android:textColor="#000000"
             android:textSize="25sp" />
@@ -85,7 +80,7 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Stadt"
+                android:text="@string/city"
                 android:id="@+id/userdataInputRBtnStadt"
                 android:textColor="#000000"
                 android:textSize="20sp"
@@ -94,7 +89,7 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Agglo"
+                android:text="@string/agglomeration"
                 android:id="@+id/userdataInputRBtnAgg"
                 android:textColor="#000000"
                 android:textSize="20sp"
@@ -103,7 +98,7 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ländlich"
+                android:text="@string/rurally"
                 android:id="@+id/userdataInputRBtnAusser"
                 android:textColor="#000000"
                 android:textSize="20sp"
@@ -114,7 +109,7 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Wie schätzen Sie Ihre Geduld beim Surfen ein"
+            android:text="@string/choose_your_patience"
             android:id="@+id/userdataInputTxtGeduld"
             android:textColor="#000000"
             android:textSize="25sp" />
@@ -128,7 +123,7 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="geduldig"
+                android:text="@string/patiently"
                 android:id="@+id/userdataInputRBtnGed"
                 android:textColor="#000000"
                 android:textSize="20sp"
@@ -137,7 +132,7 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="mittel"
+                android:text="@string/moderat_patiently"
                 android:id="@+id/userdataInputRBtnMitt"
                 android:textColor="#000000"
                 android:textSize="20sp"
@@ -146,7 +141,7 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ungeduldig"
+                android:text="@string/impatiently"
                 android:id="@+id/userdataInputRBtnUnged"
                 android:textColor="#000000"
                 android:textSize="20sp"
@@ -160,10 +155,9 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Weiter"
+            android:text="@string/next"
             android:id="@+id/userdataInputBtnWeiter"
             android:textSize="20sp" />
 
-    </LinearLayout>
 
-</FrameLayout>
+</LinearLayout>
